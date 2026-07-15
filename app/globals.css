@@ -1,0 +1,342 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Lenis smooth-scroll compatibility */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-ivory text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: rgba(200, 162, 74, 0.28);
+    color: #1c1917;
+  }
+
+  :focus-visible {
+    outline: 2px solid #c8a24a;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 md:py-24 lg:py-28;
+  }
+
+  .section-container {
+    @apply mx-auto w-full max-w-content px-6 lg:px-8;
+  }
+
+  /* Unified premium navy surface used for AI + hardware sections */
+  .ambient-navy {
+    background-color: #0b1220;
+    background-image: radial-gradient(
+        60% 50% at 15% 0%,
+        rgba(200, 162, 74, 0.12) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        50% 50% at 100% 100%,
+        rgba(61, 90, 128, 0.18) 0%,
+        transparent 60%
+      ),
+      linear-gradient(135deg, #0b1220 0%, #141d2e 45%, #0f1729 70%, #0b1220 100%);
+    background-size: 100% 100%, 100% 100%, 200% 200%;
+    animation: ambient-shift 14s ease-in-out infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ambient-navy {
+      animation: none;
+      background-size: 100% 100%, 100% 100%, 100% 100%;
+    }
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-light via-gold to-gold-dark bg-clip-text text-transparent;
+  }
+
+  /* Animated gold shimmer that sweeps across text.
+     Stays richly saturated so trailing letters never wash out. */
+  .text-shimmer-gold {
+    display: inline-block;
+    line-height: 1.35;
+    padding-block: 0.14em 0.18em;
+    padding-inline: 0.1em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    background-image: linear-gradient(
+      100deg,
+      #a8863a 0%,
+      #b8923f 20%,
+      #c8a24a 38%,
+      #e2c277 48%,
+      #c8a24a 58%,
+      #b8923f 78%,
+      #a8863a 100%
+    );
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 5s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .text-shimmer-gold {
+      animation: none;
+    }
+  }
+
+  /* Single reusable card surface */
+  .card-surface {
+    @apply rounded-card border border-line bg-white shadow-card transition-all duration-300 ease-premium;
+  }
+
+  .card-surface-dark {
+    @apply rounded-card border border-navy-line bg-navy-light/70 shadow-card backdrop-blur-sm transition-all duration-300 ease-premium;
+  }
+
+  .hover-lift {
+    @apply hover:-translate-y-1.5 hover:shadow-card-hover;
+  }
+
+  .hover-lift-dark:hover {
+    transform: translateY(-6px);
+    border-color: rgba(200, 162, 74, 0.55);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  }
+
+  .gold-rule {
+    @apply h-px w-16 bg-gradient-to-r from-gold to-transparent;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-brand text-gold-dark;
+  }
+
+  /* Mouse-follow spotlight card. --spot-x/--spot-y are set from JS. */
+  .spotlight-card {
+    @apply relative overflow-hidden rounded-card border border-line bg-white shadow-card transition-all duration-300 ease-premium;
+  }
+
+  .spotlight-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    background: radial-gradient(
+      340px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgba(200, 162, 74, 0.09),
+      transparent 65%
+    );
+  }
+
+  .spotlight-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+      260px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgba(200, 162, 74, 0.55),
+      transparent 70%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .spotlight-card:hover::before,
+  .spotlight-card:hover::after {
+    opacity: 1;
+  }
+
+  .spotlight-card-dark {
+    @apply border-navy-line bg-navy-light/70 backdrop-blur-sm;
+  }
+
+  .spotlight-card-dark::before {
+    background: radial-gradient(
+      340px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgba(200, 162, 74, 0.13),
+      transparent 65%
+    );
+  }
+
+  /* Diagonal shine sweep across buttons on hover */
+  .btn-shine {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -75%;
+    width: 50%;
+    transform: skewX(-20deg);
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.45),
+      transparent
+    );
+    transition: none;
+  }
+
+  .btn-shine:hover::after {
+    animation: btn-shine-sweep 0.75s ease;
+  }
+
+  @keyframes btn-shine-sweep {
+    from {
+      left: -75%;
+    }
+    to {
+      left: 125%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-shine::after {
+      display: none;
+    }
+  }
+
+  /* Rotating conic gold glow border for flagship cards */
+  .glow-border {
+    position: relative;
+  }
+
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -2.5px;
+    pointer-events: none;
+    border-radius: inherit;
+    padding: 2.5px;
+    background: conic-gradient(
+      from var(--glow-angle, 0deg),
+      rgba(200, 162, 74, 0.15),
+      rgba(226, 194, 119, 1),
+      rgba(200, 162, 74, 0.15),
+      rgba(200, 162, 74, 0.15),
+      rgba(226, 194, 119, 0.9),
+      rgba(200, 162, 74, 0.15)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: glow-rotate 5s linear infinite;
+  }
+
+  @property --glow-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes glow-rotate {
+    to {
+      --glow-angle: 360deg;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glow-border::before {
+      animation: none;
+    }
+  }
+}
+
+@layer utilities {
+  .balance {
+    text-wrap: balance;
+  }
+
+  /* Subtle film grain to add tactile, non-flat texture (premium print feel) */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  .hairline-gold {
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      rgba(200, 162, 74, 0.55),
+      transparent
+    );
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
