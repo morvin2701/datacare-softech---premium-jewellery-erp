@@ -1,28 +1,5 @@
-import { Montserrat, Inter, Fraunces } from 'next/font/google';
 import SmoothScroll from '../components/ui/SmoothScroll';
 import './globals.css';
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-montserrat',
-  display: 'swap',
-  weight: ['600', '700', '800'],
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-// Characterful serif for editorial/luxury accents (headline highlight, numerals).
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  variable: '--font-fraunces',
-  display: 'swap',
-  style: ['normal', 'italic'],
-  weight: ['400', '500', '600'],
-});
 
 export const metadata = {
   title: 'Premium Jewellery ERP Software | Datacare Softech',
@@ -47,10 +24,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${montserrat.variable} ${inter.variable} ${fraunces.variable} scroll-smooth`}
-    >
+    <html lang="en" className="scroll-smooth">
       <body>
         <SmoothScroll />
         {children}

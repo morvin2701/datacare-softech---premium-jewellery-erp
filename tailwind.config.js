@@ -67,7 +67,7 @@ module.exports = {
         float: 'float 7s ease-in-out infinite',
         'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
         marquee: 'marquee 38s linear infinite',
-        'marquee-reverse': 'marquee 38s linear infinite reverse',
+        'marquee-right': 'marquee-right 38s linear infinite',
       },
       keyframes: {
         'ambient-shift': {
@@ -93,6 +93,10 @@ module.exports = {
         marquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        'marquee-right': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0)' },
         },
       },
     },

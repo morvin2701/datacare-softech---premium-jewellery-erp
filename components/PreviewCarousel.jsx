@@ -108,7 +108,7 @@ function FilmStrip({
 
       <div
         className={`flex w-max gap-4 py-2 sm:gap-5 ${
-          reverse ? 'animate-marquee-reverse' : 'animate-marquee'
+          reverse ? 'animate-marquee-right' : 'animate-marquee'
         } group-hover:[animation-play-state:paused] motion-reduce:animate-none`}
       >
         {[...images, ...images].map((img, i) => (
@@ -213,6 +213,7 @@ export default function PreviewCarousel() {
             type="mobile"
             onSelect={openStrip}
             active={isNearView}
+            reverse
             portrait
           />
         </div>
