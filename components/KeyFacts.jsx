@@ -19,7 +19,15 @@ const facts = [
     sub: 'Across India, the GCC, and multi-store retail teams',
     icon: Store,
     kicker: 'Enterprise reach',
-    points: ['Multi-store ready', 'Franchise rollouts', 'Retail + wholesale'],
+    panel: {
+      tag: 'Trusted network',
+      title: 'Retailers who stay with us',
+      stats: [
+        { label: 'In business', value: '15+ yrs' },
+        { label: 'Client retention', value: '90%+' },
+      ],
+      points: ['Multi-store chains', 'Franchise rollouts', 'Retail + wholesale'],
+    },
   },
   {
     value: 18,
@@ -28,7 +36,15 @@ const facts = [
     sub: 'Connected rollouts across retail hubs and trade markets',
     icon: Building2,
     kicker: 'Regional presence',
-    points: ['Pan-India coverage', 'GCC markets', 'Local onboarding'],
+    panel: {
+      tag: 'Growing footprint',
+      title: 'Rollouts that scale by region',
+      stats: [
+        { label: 'Countries', value: '3' },
+        { label: 'Retail hubs', value: '18' },
+      ],
+      points: ['Pan-India coverage', 'GCC trade markets', 'Local-language onboarding'],
+    },
   },
   {
     value: 40,
@@ -37,7 +53,15 @@ const facts = [
     sub: 'Scales, RFID, printers, billing devices, and more',
     icon: Wrench,
     kicker: 'Shop-floor ready',
-    points: ['RFID + barcode', 'Weighing scales', 'Billing printers'],
+    panel: {
+      tag: 'Plug and play',
+      title: 'Devices synced out of the box',
+      stats: [
+        { label: 'Device types', value: '40+' },
+        { label: 'Setup time', value: 'Same day' },
+      ],
+      points: ['RFID + barcode readers', 'Weighing scales', 'Billing + tag printers'],
+    },
   },
   {
     value: 2,
@@ -46,7 +70,15 @@ const facts = [
     sub: 'Local support, faster deployment, and on-site assistance',
     icon: Headphones,
     kicker: 'Always within reach',
-    points: ['On-site assistance', 'Faster deployment', 'Dedicated support'],
+    panel: {
+      tag: 'On the ground',
+      title: 'Support close to your stores',
+      stats: [
+        { label: 'Support desk', value: '24/7' },
+        { label: 'On-site visits', value: 'Scheduled' },
+      ],
+      points: ['On-site assistance', 'Faster deployment', 'Dedicated account team'],
+    },
   },
 ];
 
@@ -126,27 +158,28 @@ function FactSlide({ fact, index, progress }) {
                   <Icon size={22} strokeWidth={1.9} />
                 </span>
                 <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-white/45">
-                  Verified
+                  {fact.panel.tag}
                 </span>
               </div>
 
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                <div className="rounded-2xl border border-white/[0.08] bg-black/20 px-4 py-4">
-                  <p className="text-[0.62rem] uppercase tracking-[0.2em] text-white/40">
-                    Reliability
-                  </p>
-                  <p className="mt-2 font-serif text-2xl text-gold">99.9%</p>
-                </div>
-                <div className="rounded-2xl border border-white/[0.08] bg-black/20 px-4 py-4">
-                  <p className="text-[0.62rem] uppercase tracking-[0.2em] text-white/40">
-                    Deployments
-                  </p>
-                  <p className="mt-2 font-serif text-2xl text-gold">Fast</p>
-                </div>
+              <p className="mt-5 text-sm font-semibold text-white/85">{fact.panel.title}</p>
+
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {fact.panel.stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-2xl border border-white/[0.08] bg-black/20 px-4 py-4"
+                  >
+                    <p className="text-[0.62rem] uppercase tracking-[0.2em] text-white/40">
+                      {stat.label}
+                    </p>
+                    <p className="mt-2 font-serif text-2xl text-gold">{stat.value}</p>
+                  </div>
+                ))}
               </div>
 
               <ul className="mt-4 space-y-2.5">
-                {fact.points.map((point) => (
+                {fact.panel.points.map((point) => (
                   <li
                     key={point}
                     className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] px-4 py-3 text-sm text-white/70"
