@@ -107,7 +107,7 @@ function MarqueeRow({ items, reverse = false }) {
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-navy to-transparent sm:w-32" />
       <div
         className={`flex w-max gap-5 py-1 ${
-          reverse ? 'animate-marquee-reverse' : 'animate-marquee'
+          reverse ? 'animate-marquee-right' : 'animate-marquee'
         } group-hover:[animation-play-state:paused] motion-reduce:animate-none`}
       >
         {[...items, ...items].map((item, i) => (
