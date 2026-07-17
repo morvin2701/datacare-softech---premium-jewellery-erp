@@ -200,10 +200,10 @@ export default function KeyFacts() {
   return (
     <section
       ref={sectionRef}
-      className="ambient-navy relative overflow-hidden text-white"
+      className="ambient-navy relative overflow-visible text-white"
       style={reduceMotion ? undefined : { height: `${facts.length * 100}vh` }}
     >
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute -top-28 right-[-10%] h-[26rem] w-[26rem] rounded-full bg-gold/10 blur-[120px]"
           style={reduceMotion ? undefined : { x: glowX, y: glowY }}
@@ -274,7 +274,7 @@ export default function KeyFacts() {
           </div>
         </div>
       ) : (
-        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        <div className="sticky top-0 z-10 flex h-screen items-center overflow-hidden">
           <div className="section-container relative w-full">
             <Reveal className="flex flex-col gap-3">
               <span className="flex flex-wrap items-center gap-3">
@@ -309,6 +309,11 @@ export default function KeyFacts() {
                 />
               ))}
             </motion.div>
+
+            <div className="mt-6 flex items-center justify-between gap-4 text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-white/36">
+              <span>Scroll locks this section</span>
+              <span>Horizontal story track</span>
+            </div>
           </div>
         </div>
       )}
