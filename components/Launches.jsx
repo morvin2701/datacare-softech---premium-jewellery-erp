@@ -2,57 +2,27 @@ import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, Check, CloudOff, RefreshCw, Sparkles } from 'lucide-react';
 import Icon from './Icon';
 import SectionHeading from './SectionHeading';
+import PhoneReel from './PhoneReel';
 import { launches } from '@/lib/content';
 
 /* ---------- Visuals: one per launch, all fill the same dark panel ---------- */
 
 const panel = 'dark-surface relative flex min-h-[26rem] w-full items-center justify-center overflow-hidden rounded-[1.75rem] border border-white/10 p-6 shadow-lift sm:p-10';
 
-function OfflineVisual() {
-  const orders = [
-    ['Bangle · 22K · 17.900 g', 'Adv ₹ 25,000'],
-    ['Necklace set · 916 · 42.300 g', 'Adv ₹ 60,000'],
-    ['Ring · 4.250 g · Diamond', 'Adv ₹ 10,000'],
-  ];
+function OfflineVisual({ screens }) {
   return (
-    <div className={panel} aria-hidden="true">
-      <div className="grid-lines pointer-events-none absolute inset-0" />
-      <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/20 blur-[90px]" />
-      {/* Phone */}
-      <div className="relative w-[15.5rem] rounded-[2.2rem] border-[6px] border-navy-muted bg-white p-4 pb-6 text-ink shadow-[0_40px_80px_-30px_rgba(0,0,0,.8)] sm:w-[17rem]">
-        <span className="absolute left-1/2 top-2 h-4 w-20 -translate-x-1/2 rounded-full bg-navy-muted" />
-        <div className="mt-4 flex items-center justify-between">
-          <div>
-            <p className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-gold-dark">DataCare orders</p>
-            <p className="font-display text-base font-semibold">Exhibition · Day 2</p>
-          </div>
-          <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-1 text-[0.6rem] font-bold text-amber-700 ring-1 ring-amber-200">
-            <CloudOff size={11} /> Offline
-          </span>
-        </div>
-        <ul className="mt-3 space-y-2">
-          {orders.map(([a, b], i) => (
-            <li key={a} className="flex items-center gap-2.5 rounded-xl border border-line bg-ivory px-2.5 py-2" style={{ animation: `hero-in 0.5s var(--ease) ${i * 0.35}s both` }}>
-              <span className="h-9 w-9 shrink-0 rounded-lg bg-gradient-to-br from-gold-light to-gold-dark" />
-              <span className="min-w-0 flex-1">
-                <span className="block truncate text-[0.7rem] font-semibold">{a}</span>
-                <span className="block text-[0.62rem] text-ink-faint">{b} · due 12 Oct</span>
-              </span>
-              <Check size={13} strokeWidth={3} className="shrink-0 text-emerald-600" />
-            </li>
-          ))}
-        </ul>
-        <span className="mt-3 block w-full rounded-xl bg-navy py-2.5 text-center text-[0.7rem] font-semibold text-white">+ New order</span>
-        <p className="mt-2 flex items-center justify-center gap-1.5 text-[0.6rem] text-ink-faint">
-          <RefreshCw size={10} className="animate-spin-slow" /> 3 orders waiting · syncs when online
-        </p>
+    <div className={`${panel} !py-8`}>
+      <div className="grid-lines pointer-events-none absolute inset-0" aria-hidden="true" />
+      <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/20 blur-[90px]" />
+      <div className="relative">
+        <PhoneReel screens={screens} alt="DataCare Offline Order App" />
       </div>
-      {/* Sync path to the ERP */}
-      <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-2 text-center sm:flex lg:right-10">
-        <span className="rounded-xl border border-white/15 bg-navy px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-wider text-white/80">DataCare Next</span>
-        <span className="h-16 w-px border-l border-dashed border-gold/60" />
-        <span className="rounded-full bg-gold px-2.5 py-1 text-[0.6rem] font-bold text-navy">Auto-sync</span>
-      </div>
+      <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-navy/80 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-wider text-white/80 backdrop-blur">
+        <CloudOff size={11} className="text-amber-300" aria-hidden="true" /> Works offline
+      </span>
+      <span className="absolute right-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-gold px-3 py-1 text-[0.62rem] font-bold uppercase tracking-wider text-navy">
+        <RefreshCw size={11} aria-hidden="true" /> Auto-sync to ERP
+      </span>
     </div>
   );
 }
@@ -102,7 +72,7 @@ export default function Launches() {
           {launches.map((l, i) => {
             const flip = i % 2 === 1;
             const visual =
-              i === 0 ? <OfflineVisual /> : l.image?.photo ? <PhotoVisual image={l.image} /> : <BrowserVisual image={l.image} url={l.link?.href.replace(/^https?:\/\/|\/$/g, '')} />;
+              l.screens ? <OfflineVisual screens={l.screens} /> : l.image?.photo ? <PhotoVisual image={l.image} /> : <BrowserVisual image={l.image} url={l.link?.href.replace(/^https?:\/\/|\/$/g, '')} />;
             return (
               <article key={l.title} id={l.id} className="grid items-center gap-10 py-14 md:py-20 lg:grid-cols-2 lg:gap-16">
                 <div className={flip ? 'lg:order-2' : ''} data-reveal={flip ? 'right' : 'left'}>
