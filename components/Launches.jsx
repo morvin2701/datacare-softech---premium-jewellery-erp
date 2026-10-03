@@ -59,7 +59,7 @@ function OfflineVisual() {
 
 function BrowserVisual({ image, url }) {
   return (
-    <div className={`${panel} !items-end !p-0 pl-6 pt-10 sm:pl-10 sm:pt-14`} aria-hidden="true">
+    <div className={`${panel} !items-end !p-0 pl-5 pt-8 sm:pl-8 sm:pt-10`} aria-hidden="true">
       <div className="grid-lines pointer-events-none absolute inset-0" />
       <div className="relative w-full overflow-hidden rounded-tl-2xl border-l border-t border-white/20 bg-white shadow-[0_40px_80px_-30px_rgba(0,0,0,.8)]">
         <div className="flex items-center gap-1.5 border-b border-line bg-ivory px-4 py-2.5">
@@ -76,8 +76,8 @@ function BrowserVisual({ image, url }) {
 
 function PhotoVisual({ image }) {
   return (
-    <div className={`${panel} max-h-[32rem] !p-0`}>
-      <Image src={image.src} alt={image.alt} width={image.w} height={image.h} loading="lazy" sizes="(max-width: 1024px) 90vw, 640px" className="h-full max-h-[32rem] w-full object-cover object-center" />
+    <div className={`${panel} !bg-[#efe9df] !bg-none !p-0`}>
+      <Image src={image.src} alt={image.alt} width={image.w} height={image.h} loading="lazy" sizes="(max-width: 1024px) 90vw, 640px" className="max-h-[34rem] w-full object-contain" />
     </div>
   );
 }
