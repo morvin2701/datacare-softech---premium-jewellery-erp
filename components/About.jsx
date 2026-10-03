@@ -59,7 +59,7 @@ export default function About() {
 
           <div className="dark-surface relative overflow-hidden rounded-[1.75rem] text-white shadow-lift lg:self-stretch" data-reveal="right">
             <div className="grid-lines pointer-events-none absolute inset-0" aria-hidden="true" />
-            <div className="relative grid h-full sm:grid-cols-[1fr_minmax(15rem,19rem)]">
+            <div className="relative grid h-full sm:grid-cols-[1fr_minmax(16rem,20rem)]">
               {/* Copy */}
               <div className="flex flex-col justify-between p-8 sm:p-10">
                 <div>
@@ -70,7 +70,7 @@ export default function About() {
                     Make your jewellery business <em className="gold-text">easy and fast.</em>
                   </p>
                 </div>
-                <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
+                <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/10 pt-6">
                   {[
                     [`${company.stats.years}+`, 'Years'],
                     [`${(company.stats.customers / 1000).toFixed(0)}K+`, 'Customers'],
@@ -86,14 +86,14 @@ export default function About() {
               {/* Portrait */}
               <div className="relative min-h-[22rem] sm:min-h-0">
                 <div aria-hidden="true" className="absolute bottom-0 left-1/2 h-[85%] w-[85%] -translate-x-1/2 rounded-full bg-gold/25 blur-[70px]" />
-                <div aria-hidden="true" className="absolute inset-x-6 bottom-0 top-10 rounded-t-full border border-gold/30" />
+                <div aria-hidden="true" className="absolute inset-x-4 bottom-0 top-8 rounded-t-full border border-gold/30 bg-gradient-to-b from-gold/[0.06] to-transparent" />
                 <Image
                   src="/images/sanjay-vekariya-founder.webp"
                   alt={`${founder.name}, ${founder.role} of DataCare Softech`}
                   width={540}
-                  height={651}
+                  height={757}
                   sizes="(max-width: 640px) 80vw, 272px"
-                  className="absolute bottom-0 left-1/2 h-auto w-[104%] max-w-none -translate-x-1/2 object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,.6)]"
+                  className="absolute bottom-0 left-1/2 w-[92%] max-w-none -translate-x-1/2 object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,.6)]"
                 />
               </div>
             </div>

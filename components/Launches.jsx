@@ -115,7 +115,12 @@ export default function Launches() {
                   <span className="absolute left-5 top-5 z-10 inline-flex items-center gap-1 rounded-full bg-gold px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-wider text-navy shadow-gold">
                     <Sparkles size={11} aria-hidden="true" /> {l.badge}
                   </span>
-                  {l.image ? (
+                  {l.image?.photo ? (
+                    <div className="relative -m-5 h-[16.5rem] overflow-hidden bg-[#efe9df]">
+                      <Image src={l.image.src} alt={l.image.alt} width={l.image.w} height={l.image.h} loading="lazy" sizes="(max-width: 1024px) 90vw, 460px" className="h-full w-full object-contain object-center transition duration-700 ease-premium group-hover:scale-[1.03]" />
+                      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0A1120]/80 to-transparent" />
+                    </div>
+                  ) : l.image ? (
                     <div className="relative flex h-56 w-full items-end overflow-hidden">
                       <div className="w-full overflow-hidden rounded-t-xl border border-white/15 bg-white shadow-lift transition duration-700 ease-premium group-hover:-translate-y-1">
                         <div className="flex items-center gap-1.5 border-b border-line bg-ivory px-3 py-1.5" aria-hidden="true">
