@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import Icon from './Icon';
 import SectionHeading from './SectionHeading';
@@ -114,7 +115,21 @@ export default function Launches() {
                   <span className="absolute left-5 top-5 z-10 inline-flex items-center gap-1 rounded-full bg-gold px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-wider text-navy shadow-gold">
                     <Sparkles size={11} aria-hidden="true" /> {l.badge}
                   </span>
-                  <Visual />
+                  {l.image ? (
+                    <div className="relative flex h-56 w-full items-end overflow-hidden">
+                      <div className="w-full overflow-hidden rounded-t-xl border border-white/15 bg-white shadow-lift transition duration-700 ease-premium group-hover:-translate-y-1">
+                        <div className="flex items-center gap-1.5 border-b border-line bg-ivory px-3 py-1.5" aria-hidden="true">
+                          <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
+                          <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
+                          <span className="h-2 w-2 rounded-full bg-[#28c840]" />
+                          <span className="ml-2 truncate rounded bg-white px-2 py-0.5 text-[0.55rem] text-ink-faint">🔒 {l.link?.href.replace(/^https?:\/\/|\/$/g, '')}</span>
+                        </div>
+                        <Image src={l.image.src} alt={l.image.alt} width={l.image.w} height={l.image.h} loading="lazy" sizes="(max-width: 1024px) 90vw, 440px" className="w-full" />
+                      </div>
+                    </div>
+                  ) : (
+                    <Visual />
+                  )}
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <div className="flex items-center gap-3">
