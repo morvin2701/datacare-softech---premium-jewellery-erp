@@ -1,97 +1,88 @@
 import Image from 'next/image';
-import { ArrowRight, ArrowUpRight, Check, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, CloudOff, RefreshCw, Sparkles } from 'lucide-react';
 import Icon from './Icon';
 import SectionHeading from './SectionHeading';
 import { launches } from '@/lib/content';
 
-/* Small animated illustrations, CSS/SVG only. */
+/* ---------- Visuals: one per launch, all fill the same dark panel ---------- */
+
+const panel = 'dark-surface relative flex min-h-[26rem] w-full items-center justify-center overflow-hidden rounded-[1.75rem] border border-white/10 p-6 shadow-lift sm:p-10';
 
 function OfflineVisual() {
-  const rows = ['Bangle · 22K · 17.900 g', 'Necklace set · 916', 'Ring · 4.250 g · Dia'];
+  const orders = [
+    ['Bangle · 22K · 17.900 g', 'Adv ₹ 25,000'],
+    ['Necklace set · 916 · 42.300 g', 'Adv ₹ 60,000'],
+    ['Ring · 4.250 g · Diamond', 'Adv ₹ 10,000'],
+  ];
   return (
-    <div className="relative mx-auto flex h-56 w-full items-end justify-center overflow-hidden" aria-hidden="true">
-      <div className="relative w-[9.5rem] translate-y-3 rounded-[1.6rem] border-[5px] border-navy-muted bg-navy p-3 pb-6 shadow-lift">
-        <div className="flex items-center justify-between text-[0.55rem] text-white/60">
-          <span>Orders</span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-amber-400/15 px-1.5 py-0.5 font-semibold text-amber-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-300" style={{ animation: 'ping-soft 2s ease-out infinite' }} /> Offline
+    <div className={panel} aria-hidden="true">
+      <div className="grid-lines pointer-events-none absolute inset-0" />
+      <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/20 blur-[90px]" />
+      {/* Phone */}
+      <div className="relative w-[15.5rem] rounded-[2.2rem] border-[6px] border-navy-muted bg-white p-4 pb-6 text-ink shadow-[0_40px_80px_-30px_rgba(0,0,0,.8)] sm:w-[17rem]">
+        <span className="absolute left-1/2 top-2 h-4 w-20 -translate-x-1/2 rounded-full bg-navy-muted" />
+        <div className="mt-4 flex items-center justify-between">
+          <div>
+            <p className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-gold-dark">DataCare orders</p>
+            <p className="font-display text-base font-semibold">Exhibition · Day 2</p>
+          </div>
+          <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-1 text-[0.6rem] font-bold text-amber-700 ring-1 ring-amber-200">
+            <CloudOff size={11} /> Offline
           </span>
         </div>
-        <ul className="mt-2 space-y-1.5">
-          {rows.map((r, i) => (
-            <li key={r} className="flex items-center gap-1.5 rounded-lg bg-white/[0.06] px-2 py-1.5 text-[0.55rem] text-white/85" style={{ animation: `hero-in 0.5s var(--ease) ${i * 0.5}s both` }}>
-              <span className="h-4 w-4 shrink-0 rounded bg-gold/30" /> {r}
+        <ul className="mt-3 space-y-2">
+          {orders.map(([a, b], i) => (
+            <li key={a} className="flex items-center gap-2.5 rounded-xl border border-line bg-ivory px-2.5 py-2" style={{ animation: `hero-in 0.5s var(--ease) ${i * 0.35}s both` }}>
+              <span className="h-9 w-9 shrink-0 rounded-lg bg-gradient-to-br from-gold-light to-gold-dark" />
+              <span className="min-w-0 flex-1">
+                <span className="block truncate text-[0.7rem] font-semibold">{a}</span>
+                <span className="block text-[0.62rem] text-ink-faint">{b} · due 12 Oct</span>
+              </span>
+              <Check size={13} strokeWidth={3} className="shrink-0 text-emerald-600" />
             </li>
           ))}
         </ul>
-        <div className="mt-2 rounded-lg bg-gold px-2 py-1 text-center text-[0.55rem] font-bold text-navy">3 orders · syncs when online</div>
+        <span className="mt-3 block w-full rounded-xl bg-navy py-2.5 text-center text-[0.7rem] font-semibold text-white">+ New order</span>
+        <p className="mt-2 flex items-center justify-center gap-1.5 text-[0.6rem] text-ink-faint">
+          <RefreshCw size={10} className="animate-spin-slow" /> 3 orders waiting · syncs when online
+        </p>
+      </div>
+      {/* Sync path to the ERP */}
+      <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-2 text-center sm:flex lg:right-10">
+        <span className="rounded-xl border border-white/15 bg-navy px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-wider text-white/80">DataCare Next</span>
+        <span className="h-16 w-px border-l border-dashed border-gold/60" />
+        <span className="rounded-full bg-gold px-2.5 py-1 text-[0.6rem] font-bold text-navy">Auto-sync</span>
       </div>
     </div>
   );
 }
 
-function WebVisual() {
+function BrowserVisual({ image, url }) {
   return (
-    <div className="relative mx-auto flex h-56 w-full items-end overflow-hidden" aria-hidden="true">
-      <div className="w-full rounded-t-xl border border-white/10 bg-navy shadow-lift">
-        <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-2">
-          <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
-          <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
-          <span className="h-2 w-2 rounded-full bg-[#28c840]" />
-          <span className="ml-2 flex-1 truncate rounded-md bg-white/10 px-2 py-0.5 text-[0.55rem] text-white/60">🔒 datacareweb.com</span>
+    <div className={`${panel} !items-end !p-0 pl-6 pt-10 sm:pl-10 sm:pt-14`} aria-hidden="true">
+      <div className="grid-lines pointer-events-none absolute inset-0" />
+      <div className="relative w-full overflow-hidden rounded-tl-2xl border-l border-t border-white/20 bg-white shadow-[0_40px_80px_-30px_rgba(0,0,0,.8)]">
+        <div className="flex items-center gap-1.5 border-b border-line bg-ivory px-4 py-2.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+          <span className="ml-3 truncate rounded-md bg-white px-3 py-1 text-[0.7rem] text-ink-faint ring-1 ring-line">🔒 {url}</span>
         </div>
-        <div className="grid grid-cols-[4.5rem_1fr] gap-2 p-3">
-          <ul className="space-y-1">
-            {['Dashboard', 'Sales', 'Tag Stock', 'Karigar', 'Ledger'].map((t, i) => (
-              <li key={t} className={`rounded px-1.5 py-1 text-[0.55rem] ${i === 0 ? 'bg-gold text-navy' : 'text-white/60'}`}>{t}</li>
-            ))}
-          </ul>
-          <div className="space-y-2">
-            <div className="grid grid-cols-3 gap-1.5">
-              {[['Cash & bank', '₹ 4.8L'], ['Outstanding', '₹ 2.1L'], ['Branches', '3 live']].map(([k, v]) => (
-                <div key={k} className="rounded-lg bg-white/[0.06] p-1.5">
-                  <p className="text-[0.45rem] uppercase tracking-wider text-white/45">{k}</p>
-                  <p className="text-[0.65rem] font-semibold text-gold-light">{v}</p>
-                </div>
-              ))}
-            </div>
-            <div className="flex h-12 items-end gap-1 rounded-lg bg-white/[0.06] p-1.5">
-              {[40, 55, 35, 70, 60, 85, 75].map((h, i) => (
-                <span key={i} className="flex-1 rounded-sm bg-gold/70" style={{ height: `${h}%`, animation: `draw 0.8s var(--ease) ${i * 0.08}s both`, transformOrigin: 'bottom' }} />
-              ))}
-            </div>
-          </div>
-        </div>
+        <Image src={image.src} alt="" width={image.w} height={image.h} loading="lazy" sizes="(max-width: 1024px) 90vw, 640px" className="w-full" />
       </div>
     </div>
   );
 }
 
-function RfidVisual() {
-  const tags = [[30, 35], [70, 28], [78, 65], [38, 72], [55, 50], [20, 58]];
+function PhotoVisual({ image }) {
   return (
-    <div className="relative mx-auto flex h-56 w-full items-center justify-center overflow-hidden" aria-hidden="true">
-      <div className="relative aspect-square h-48">
-        {[1, 0.7, 0.4].map((s) => (
-          <span key={s} className="absolute inset-0 m-auto rounded-full border border-gold/25" style={{ width: `${s * 100}%`, height: `${s * 100}%` }} />
-        ))}
-        <span className="absolute inset-0 rounded-full" style={{ background: 'conic-gradient(from 0deg, rgba(201,162,75,.5), transparent 25%)', animation: 'radar 3s linear infinite' }} />
-        {tags.map(([x, y], i) => (
-          <span key={i} className="absolute h-2 w-2 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%`, top: `${y}%` }}>
-            <span className="absolute inset-0 rounded-full bg-gold-light" style={{ animation: `ping-soft 3s ${i * 0.5}s ease-out infinite` }} />
-            <span className="absolute inset-0 rounded-full bg-gold" />
-          </span>
-        ))}
-        <span className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-navy text-[0.5rem] font-bold uppercase tracking-widest text-gold-light ring-2 ring-gold/50">RFID</span>
-      </div>
-      <div className="absolute bottom-2 right-2 rounded-lg bg-navy px-2.5 py-1.5 text-[0.6rem] text-white/80 ring-1 ring-gold/30">
-        <span className="font-semibold text-gold-light">1,248</span> / 1,250 counted
-      </div>
+    <div className={`${panel} max-h-[32rem] !p-0`}>
+      <Image src={image.src} alt={image.alt} width={image.w} height={image.h} loading="lazy" sizes="(max-width: 1024px) 90vw, 640px" className="h-full max-h-[32rem] w-full object-cover object-center" />
     </div>
   );
 }
 
-const visuals = [OfflineVisual, WebVisual, RfidVisual];
+/* --------------------------------- Section -------------------------------- */
 
 export default function Launches() {
   return (
@@ -106,65 +97,54 @@ export default function Launches() {
           }
           intro="Three additions built from what jewellers asked for this year — orders without internet, the ERP in your browser, and a complete RFID kit for stock counting."
         />
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+
+        <div className="mt-6 divide-y divide-line/80">
           {launches.map((l, i) => {
-            const Visual = visuals[i];
+            const flip = i % 2 === 1;
+            const visual =
+              i === 0 ? <OfflineVisual /> : l.image?.photo ? <PhotoVisual image={l.image} /> : <BrowserVisual image={l.image} url={l.link?.href.replace(/^https?:\/\/|\/$/g, '')} />;
             return (
-              <article key={l.title} className="card spot group flex flex-col overflow-hidden hover:-translate-y-1 hover:shadow-lift" data-reveal style={{ '--delay': `${i * 100}ms` }}>
-                <div className="dark-surface relative border-b border-white/10 p-5">
-                  <span className="absolute left-5 top-5 z-10 inline-flex items-center gap-1 rounded-full bg-gold px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-wider text-navy shadow-gold">
-                    <Sparkles size={11} aria-hidden="true" /> {l.badge}
-                  </span>
-                  {l.image?.photo ? (
-                    <div className="relative -m-5 h-[16.5rem] overflow-hidden bg-[#efe9df]">
-                      <Image src={l.image.src} alt={l.image.alt} width={l.image.w} height={l.image.h} loading="lazy" sizes="(max-width: 1024px) 90vw, 460px" className="h-full w-full object-contain object-center transition duration-700 ease-premium group-hover:scale-[1.03]" />
-                      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0A1120]/80 to-transparent" />
-                    </div>
-                  ) : l.image ? (
-                    <div className="relative flex h-56 w-full items-end overflow-hidden">
-                      <div className="w-full overflow-hidden rounded-t-xl border border-white/15 bg-white shadow-lift transition duration-700 ease-premium group-hover:-translate-y-1">
-                        <div className="flex items-center gap-1.5 border-b border-line bg-ivory px-3 py-1.5" aria-hidden="true">
-                          <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
-                          <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
-                          <span className="h-2 w-2 rounded-full bg-[#28c840]" />
-                          <span className="ml-2 truncate rounded bg-white px-2 py-0.5 text-[0.55rem] text-ink-faint">🔒 {l.link?.href.replace(/^https?:\/\/|\/$/g, '')}</span>
-                        </div>
-                        <Image src={l.image.src} alt={l.image.alt} width={l.image.w} height={l.image.h} loading="lazy" sizes="(max-width: 1024px) 90vw, 440px" className="w-full" />
-                      </div>
-                    </div>
-                  ) : (
-                    <Visual />
-                  )}
-                </div>
-                <div className="flex flex-1 flex-col p-7">
+              <article key={l.title} id={l.id} className="grid items-center gap-10 py-14 md:py-20 lg:grid-cols-2 lg:gap-16">
+                <div className={flip ? 'lg:order-2' : ''} data-reveal={flip ? 'right' : 'left'}>
                   <div className="flex items-center gap-3">
-                    <span className="icon-chip">
-                      <Icon name={l.icon} />
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-gold px-3 py-1 text-[0.66rem] font-bold uppercase tracking-wider text-navy shadow-gold">
+                      <Sparkles size={11} aria-hidden="true" /> {l.badge}
                     </span>
-                    <h3 className="font-display text-2xl font-medium leading-tight text-ink">{l.title}</h3>
+                    <span className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-gold-dark">
+                      Launch {String(i + 1).padStart(2, '0')} of {launches.length}
+                    </span>
                   </div>
-                  <p className="mt-3 text-[1.02rem] font-medium text-ink">{l.tagline}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{l.text}</p>
-                  <ul className="mt-5 space-y-2">
+                  <div className="mt-5 flex items-center gap-4">
+                    <span className="icon-chip !h-12 !w-12">
+                      <Icon name={l.icon} size={22} />
+                    </span>
+                    <h3 className="font-display text-[2rem] font-medium leading-tight text-ink sm:text-[2.4rem]">{l.title}</h3>
+                  </div>
+                  <p className="mt-4 text-lg font-medium text-ink">{l.tagline}</p>
+                  <p className="mt-3 leading-relaxed text-ink-muted">{l.text}</p>
+                  <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
                     {l.points.map((pt) => (
-                      <li key={pt} className="flex items-start gap-2 text-sm text-ink">
-                        <span className="mt-0.5 inline-flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-gold text-navy" style={{ width: 18, height: 18 }}>
-                          <Check size={11} strokeWidth={3} aria-hidden="true" />
+                      <li key={pt} className="flex items-start gap-2.5 text-sm text-ink">
+                        <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold text-navy">
+                          <Check size={12} strokeWidth={3} aria-hidden="true" />
                         </span>
                         {pt}
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-6">
-                    <a href="#contact" className="inline-flex items-center gap-2 font-semibold text-gold-dark transition hover:gap-3">
+                  <div className="mt-8 flex flex-wrap items-center gap-3">
+                    <a href="#contact" className="btn-gold">
                       {l.cta} <ArrowRight size={16} aria-hidden="true" />
                     </a>
                     {l.link ? (
-                      <a href={l.link.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-muted transition hover:text-ink">
-                        {l.link.label} <ArrowUpRight size={14} aria-hidden="true" />
+                      <a href={l.link.href} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                        {l.link.label} <ArrowUpRight size={15} aria-hidden="true" />
                       </a>
                     ) : null}
                   </div>
+                </div>
+                <div className={`flex ${flip ? 'lg:order-1' : ''}`} data-reveal="zoom" style={{ '--delay': '120ms' }}>
+                  {visual}
                 </div>
               </article>
             );
