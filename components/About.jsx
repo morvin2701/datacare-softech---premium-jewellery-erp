@@ -90,10 +90,10 @@ export default function About() {
                 <Image
                   src="/images/sanjay-vekariya-founder.webp"
                   alt={`${founder.name}, ${founder.role} of DataCare Softech`}
-                  width={540}
-                  height={600}
+                  width={518}
+                  height={576}
                   sizes="(max-width: 640px) 80vw, 272px"
-                  className="absolute bottom-0 left-1/2 h-[90%] w-auto max-w-none -translate-x-1/2 object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,.6)]"
+                  className="absolute bottom-0 left-1/2 h-[84%] w-auto max-w-none -translate-x-1/2 object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,.6)]"
                 />
               </div>
             </div>
