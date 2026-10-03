@@ -1,11 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    {
-      "name": "dev",
-      "runtimeExecutable": "./node_modules/.bin/next",
-      "runtimeArgs": ["dev", "--turbopack"],
-      "port": 3000
-    }
+    { "name": "dev", "runtimeExecutable": "./node_modules/.bin/next", "runtimeArgs": ["dev"], "port": 3000 }
   ]
 }

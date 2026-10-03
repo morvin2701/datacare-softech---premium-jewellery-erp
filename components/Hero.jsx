@@ -1,351 +1,123 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import {
-  AnimatePresence,
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-} from 'framer-motion';
-import {
-  ShieldCheck,
-  Sparkles,
-  Store,
-  ArrowRight,
-  Play,
-  TrendingUp,
-  Activity,
-} from 'lucide-react';
-import Button from './ui/Button';
-import CountUp from './ui/CountUp';
-import Magnetic from './ui/Magnetic';
-import DashboardMock from './ui/DashboardMock';
+import { ArrowRight, BadgeCheck, MessageCircle, Star } from 'lucide-react';
+import HeroInvoice from './HeroInvoice';
+import { company } from '@/lib/site';
 
-const trustBadges = [
-  { label: 'SOC-2 Compliant', icon: ShieldCheck },
-  { label: 'AI Analytics', icon: Sparkles },
-  { label: 'Multi-Store', icon: Store },
+const glints = [
+  { top: '12%', left: '8%', d: '0s', s: 14 },
+  { top: '22%', left: '46%', d: '1.2s', s: 10 },
+  { top: '70%', left: '4%', d: '2.1s', s: 12 },
+  { top: '84%', left: '40%', d: '0.6s', s: 9 },
+  { top: '8%', left: '88%', d: '1.7s', s: 13 },
+  { top: '58%', left: '96%', d: '2.8s', s: 10 },
 ];
-
-const stats = [
-  { value: 2000, suffix: '+', label: 'Jewellers trust us' },
-  { value: 50, suffix: '+', label: 'Multi-store chains' },
-  { value: 15, suffix: '+', label: 'Years of expertise' },
-];
-
-const rotatingWords = ['Jewellery Empire', 'Gold Business', 'Diamond Trade'];
 
 export default function Hero() {
-  const reduceMotion = useReducedMotion();
-  const [wordIndex, setWordIndex] = useState(0);
-
-  useEffect(() => {
-    if (reduceMotion) return;
-    const interval = setInterval(
-      () => setWordIndex((i) => (i + 1) % rotatingWords.length),
-      2800
-    );
-    return () => clearInterval(interval);
-  }, [reduceMotion]);
-
-  // Mouse parallax for the product showcase.
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 120, damping: 22 });
-  const sy = useSpring(my, { stiffness: 120, damping: 22 });
-
-  const cardX = useTransform(sx, [-0.5, 0.5], [-10, 10]);
-  const cardY = useTransform(sy, [-0.5, 0.5], [-8, 8]);
-  const cardRotX = useTransform(sy, [-0.5, 0.5], [3, -3]);
-  const cardRotY = useTransform(sx, [-0.5, 0.5], [-3, 3]);
-  const m1X = useTransform(sx, [-0.5, 0.5], [9, -9]);
-  const m1Y = useTransform(sy, [-0.5, 0.5], [7, -7]);
-  const m2X = useTransform(sx, [-0.5, 0.5], [-9, 9]);
-  const m2Y = useTransform(sy, [-0.5, 0.5], [-7, 7]);
-  const glowX = useTransform(sx, [-0.5, 0.5], [26, -26]);
-
-  const handleMouse = (e) => {
-    if (reduceMotion) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    mx.set((e.clientX - rect.left) / rect.width - 0.5);
-    my.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-  const resetMouse = () => {
-    mx.set(0);
-    my.set(0);
-  };
-
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
-  };
-  const item = reduceMotion
-    ? { hidden: {}, show: {} }
-    : {
-        hidden: { opacity: 0, y: 20 },
-        show: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-        },
-      };
-
+  const { years, customers, googleRating } = company.stats;
   return (
-    <section
-      id="top"
-      onMouseMove={handleMouse}
-      onMouseLeave={resetMouse}
-      className="grain relative overflow-hidden bg-ivory pt-24 pb-14 lg:pt-28 lg:pb-20"
-    >
-      {/* Ambient aurora */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <motion.div
-          style={reduceMotion ? undefined : { x: glowX }}
-          className="absolute -top-44 left-[58%] h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-gold/12 blur-[120px]"
-          animate={reduceMotion ? undefined : { opacity: [0.45, 0.8, 0.45] }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-[-12%] left-[-8%] h-[28rem] w-[28rem] rounded-full bg-link/10 blur-[110px]"
-          animate={
-            reduceMotion ? undefined : { opacity: [0.3, 0.6, 0.3], scale: [1, 1.06, 1] }
-          }
-          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <div
-          className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage:
-              'linear-gradient(to right, rgba(28,25,23,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(28,25,23,0.04) 1px, transparent 1px)',
-            backgroundSize: '72px 72px',
-            maskImage:
-              'radial-gradient(ellipse 75% 60% at 60% 25%, black 25%, transparent 72%)',
-            WebkitMaskImage:
-              'radial-gradient(ellipse 75% 60% at 60% 25%, black 25%, transparent 72%)',
-          }}
-        />
-      </div>
-
-      <div className="section-container relative grid items-center gap-14 lg:grid-cols-[1fr_1.06fr] lg:gap-12">
-        {/* Left — editorial copy */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col items-start"
+    <section id="home" className="dark-surface spot relative overflow-hidden text-white">
+      <div className="grid-lines pointer-events-none absolute inset-0" aria-hidden="true" />
+      {glints.map((g, i) => (
+        <svg
+          key={i}
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          width={g.s}
+          height={g.s}
+          className="pointer-events-none absolute text-gold-light"
+          style={{ top: g.top, left: g.left, animation: `twinkle 3.6s ease-in-out ${g.d} infinite` }}
         >
-          <motion.div variants={item} className="flex items-center gap-3">
-            <span className="h-px w-10 hairline-gold" />
-            <span className="inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-brand text-gold-dark">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-gold" />
-              </span>
-              Jewellery ERP · India &amp; UAE
+          <path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z" />
+        </svg>
+      ))}
+
+      <div className="container-x relative grid items-center gap-14 pb-20 pt-14 md:pb-28 md:pt-20 lg:grid-cols-[1.02fr_1fr] lg:gap-10">
+        <div>
+          <p className="inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-white/5 px-4 py-1.5 text-xs font-medium text-gold-light backdrop-blur hero-in" style={{ '--d': '0ms' }}>
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
             </span>
-          </motion.div>
+            DataCare Next ERP · Made in Ahmedabad for Indian jewellers
+          </p>
 
-          <motion.h1
-            variants={item}
-            className="mt-6 font-display text-[2.6rem] font-extrabold leading-[1.2] tracking-tight text-ink sm:text-6xl lg:text-[4.2rem]"
-          >
-            Master your
-            <span className="mt-1 block overflow-visible py-1">
-              <span className="relative inline-flex min-h-[1.35em] items-baseline overflow-visible align-baseline">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={wordIndex}
-                    initial={reduceMotion ? false : { y: '110%', opacity: 0 }}
-                    animate={{ y: '0%', opacity: 1 }}
-                    exit={reduceMotion ? undefined : { y: '-110%', opacity: 0 }}
-                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-shimmer-gold pr-1 font-serif text-[3rem] font-medium italic sm:text-[3.8rem] lg:text-[4.4rem]"
-                  >
-                    {rotatingWords[wordIndex]}
-                  </motion.span>
-                </AnimatePresence>
-              </span>
-            </span>
-          </motion.h1>
+          <h1 className="mt-6 font-display text-[2.45rem] font-medium leading-[1.04] tracking-tight sm:text-[3.4rem] lg:text-[3.9rem] hero-rise">
+            <span className="gold-text italic">Jewellery Software</span> for Retail, Wholesale &amp; Manufacturing Jewellers in India
+          </h1>
 
-          <motion.p
-            variants={item}
-            className="mt-7 max-w-lg text-lg leading-relaxed text-ink-muted"
-          >
-            The definitive operating system for modern jewellers — unifying
-            multi-store inventory, intelligent sales, GST &amp; hallmarking
-            compliance, and AI-powered catalog tooling in one exquisite platform.
-          </motion.p>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg hero-rise" style={{ '--d': '80ms' }}>
+            Run your entire jewellery business from one software. DataCare Next handles GST and HUID billing, gold and silver
+            stock, barcode and RFID tags, karigar work, old gold exchange, gold schemes and accounts — with a mobile app for
+            owners and local support from our team in Ahmedabad.
+          </p>
 
-          <motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-4">
-            <Magnetic>
-              <Button
-                as="a"
-                href="#contact"
-                variant="primary"
-                size="lg"
-                iconRight={ArrowRight}
-              >
-                Request a demo
-              </Button>
-            </Magnetic>
-            <a
-              href="#contact"
-              className="group inline-flex items-center gap-3 text-sm font-semibold text-ink transition-colors hover:text-gold-dark"
-            >
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 bg-white text-ink transition-all duration-300 ease-premium group-hover:border-gold group-hover:text-gold-dark group-hover:shadow-card">
-                <Play size={16} className="ml-0.5 fill-current" />
-              </span>
-              Start free trial
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row hero-in" style={{ '--d': '200ms' }}>
+            <a href="#contact" className="btn-gold !min-h-[3.25rem] px-7 text-[0.95rem]">
+              Book Free Demo <ArrowRight size={18} aria-hidden="true" />
             </a>
-          </motion.div>
+            <a href="#contact" data-open-contacts="whatsapp" className="btn-ghost-dark !min-h-[3.25rem] px-7 text-[0.95rem]">
+              <MessageCircle size={18} className="text-[#3ddc84]" aria-hidden="true" /> WhatsApp Us
+            </a>
+          </div>
 
-          {/* Editorial inline stats with serif numerals */}
-          <motion.dl
-            variants={item}
-            className="mt-10 flex flex-wrap items-end gap-x-8 gap-y-6 border-t border-line/80 pt-6"
-          >
-            {stats.map((stat, i) => (
-              <div
-                key={stat.label}
-                className={i > 0 ? 'border-l border-line/80 pl-8' : ''}
-              >
-                <dt className="sr-only">{stat.label}</dt>
-                <dd className="font-serif text-4xl font-semibold leading-none text-ink">
-                  <CountUp end={stat.value} suffix={stat.suffix} />
-                </dd>
-                <p className="mt-2.5 text-[0.78rem] font-semibold uppercase tracking-wide text-ink-muted">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </motion.dl>
+          <ul className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/75 hero-in" style={{ '--d': '300ms' }}>
+            <li className="flex items-center gap-2">
+              <BadgeCheck size={18} className="text-gold" aria-hidden="true" /> {years}+ years
+            </li>
+            <li className="flex items-center gap-2">
+              <BadgeCheck size={18} className="text-gold" aria-hidden="true" /> {customers.toLocaleString('en-IN')}+ customers
+            </li>
+            <li className="flex items-center gap-2">
+              <Star size={17} className="fill-gold text-gold" aria-hidden="true" /> {googleRating} Google rating
+            </li>
+          </ul>
+        </div>
 
-          <motion.ul
-            variants={item}
-            className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3"
-            aria-label="Trust credentials"
-          >
-            {trustBadges.map((badge) => (
-              <li
-                key={badge.label}
-                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-ink-faint"
-              >
-                <badge.icon size={15} className="text-gold-dark" />
-                {badge.label}
-              </li>
-            ))}
-          </motion.ul>
-        </motion.div>
+        {/* Visual: real desktop screen (hero object) + owner app + compact live bill */}
+        <div className="relative mx-auto w-full max-w-[40rem] pt-6 sm:pb-28 lg:mr-0" data-reveal="zoom" style={{ '--delay': '200ms' }}>
+          <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/25 blur-[100px]" />
 
-        {/* Right — product showcase */}
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto w-full max-w-md px-4 sm:max-w-xl sm:px-6 lg:max-w-none lg:px-1"
-          style={{ perspective: 1400 }}
-        >
-          {/* Decorative gold rings (kept inside bounds) */}
-          <div
-            aria-hidden="true"
-            className="absolute right-2 -top-3 h-32 w-32 rounded-full border border-gold/20"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-2 left-2 h-24 w-24 rounded-full border border-gold/15"
-          />
-
-          <motion.div
-            style={
-              reduceMotion
-                ? undefined
-                : {
-                    x: cardX,
-                    y: cardY,
-                    rotateX: cardRotX,
-                    rotateY: cardRotY,
-                    transformStyle: 'preserve-3d',
-                  }
-            }
-            className="relative"
-          >
-            {/* Framed live dashboard mock */}
-            <div className="relative overflow-hidden rounded-[1.4rem] border border-gold/20 bg-white p-2 shadow-card-hover ring-1 ring-black/[0.03]">
-              <div className="relative overflow-hidden rounded-[1rem]">
-                <DashboardMock />
-                {!reduceMotion && (
-                  <motion.div
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent"
-                    initial={{ x: '-130%' }}
-                    animate={{ x: '130%' }}
-                    transition={{
-                      duration: 2.6,
-                      repeat: Infinity,
-                      repeatDelay: 5.5,
-                      ease: 'easeInOut',
-                    }}
-                  />
-                )}
-              </div>
+          {/* Desktop */}
+          <div className="relative mr-0 rounded-2xl border border-white/15 bg-white/5 p-2 shadow-[0_40px_120px_-30px_rgba(0,0,0,.8)] backdrop-blur sm:mr-20">
+            <div className="flex items-center gap-1.5 px-2 pb-2 pt-1" aria-hidden="true">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+              <span className="ml-3 truncate rounded-md bg-white/10 px-3 py-0.5 text-[0.65rem] text-white/50">DataCare Next — Jewellery ERP</span>
+              <span className="ml-auto hidden items-center gap-1.5 rounded-md bg-emerald-400/10 px-2 py-0.5 text-[0.62rem] font-medium text-emerald-300 sm:inline-flex">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Gold rate synced
+              </span>
             </div>
+            <Image
+              src="/images/datacare-next-jewellery-software-desktop.webp"
+              alt="DataCare Next jewellery billing software main screen with sales, purchase, karigar and GST menus"
+              width={1600}
+              height={850}
+              priority
+              sizes="(max-width: 1024px) 92vw, 600px"
+              className="rounded-xl"
+            />
+          </div>
 
-            {/* Floating metric card — revenue (top-left) */}
-            <motion.div
-              style={reduceMotion ? undefined : { x: m1X, y: m1Y }}
-              className="absolute -left-4 -top-7 hidden items-center gap-2.5 rounded-2xl border border-line bg-white/95 px-3.5 py-2.5 shadow-card backdrop-blur sm:flex"
-            >
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gold/10 text-gold-dark ring-1 ring-gold/20">
-                <TrendingUp size={16} />
-              </span>
-              <div className="leading-tight">
-                <p className="font-serif text-base font-semibold text-ink">
-                  ₹2.4 Cr
-                </p>
-                <p className="text-[0.65rem] font-medium uppercase tracking-wide text-ink-faint">
-                  Monthly GMV
-                </p>
-              </div>
-            </motion.div>
+          {/* Owner app — bottom right, overlapping the screen edge */}
+          <div className="animate-float-slow absolute bottom-0 right-0 hidden w-[10rem] sm:block" style={{ animationDelay: '1s' }}>
+            <div className="rounded-[1.7rem] border-[5px] border-navy-muted bg-navy p-0.5 shadow-lift">
+              <Image
+                src="/images/owner-app-dashboard.webp"
+                alt="DataCare jewellery mobile app for owners showing gold rate, silver rate and reports"
+                width={560}
+                height={1214}
+                sizes="160px"
+                className="rounded-[1.3rem]"
+              />
+            </div>
+          </div>
 
-            {/* Floating metric card — live sync (bottom-left) */}
-            <motion.div
-              style={reduceMotion ? undefined : { x: m2X, y: m2Y }}
-              className="absolute -bottom-4 -left-2 hidden items-center gap-2.5 rounded-2xl border border-line bg-white/95 px-3.5 py-2.5 shadow-card backdrop-blur sm:flex"
-            >
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 ring-1 ring-emerald-500/20">
-                <Activity size={16} />
-              </span>
-              <div className="leading-tight">
-                <p className="text-[0.8rem] font-bold text-ink">Live inventory sync</p>
-                <p className="text-[0.65rem] font-medium text-ink-faint">
-                  Real-time · all stores
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Phone peeking (bottom-right) */}
-            <motion.div
-              animate={reduceMotion ? undefined : { y: [0, -8, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-6 right-1 hidden w-[22%] overflow-hidden rounded-[1.3rem] border-[5px] border-navy bg-navy shadow-card-hover lg:block"
-            >
-              <div className="relative aspect-[878/1846]">
-                <Image
-                  src="/02.png"
-                  alt="Datacare Softech mobile app"
-                  fill
-                  sizes="14vw"
-                  className="object-cover object-top"
-                  priority
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+          {/* Live sample bill — bottom left */}
+          <div className="animate-float relative mx-auto mt-4 w-max sm:absolute sm:-left-8 sm:bottom-4 sm:mt-0">
+            <HeroInvoice />
+          </div>
+        </div>
       </div>
     </section>
   );

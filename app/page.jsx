@@ -1,81 +1,63 @@
-import Header from '../components/Header';
-import Hero from '../components/Hero';
-import Marquee from '../components/Marquee';
-import KeyFacts from '../components/KeyFacts';
-import AIFeatureSection from '../components/AIFeatureSection';
-import AIImageShowcase from '../components/AIImageShowcase';
-import AIVideoShowcase from '../components/AIVideoShowcase';
-import EnterpriseFeatureGrid from '../components/EnterpriseFeatureGrid';
-import HardwareEcosystem from '../components/HardwareEcosystem';
-import AddOnsGrid from '../components/AddOnsGrid';
-import PricingTiers from '../components/PricingTiers';
-import OnboardingJourney from '../components/OnboardingJourney';
-import MobileAppsShowcase from '../components/MobileAppsShowcase';
-import PreviewCarousel from '../components/PreviewCarousel';
-import Testimonials from '../components/Testimonials';
-import ContactSection from '../components/ContactSection';
-import TeamSection from '../components/TeamSection';
-import Footer from '../components/Footer';
+import TopBar from '@/components/TopBar';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import TrustStrip from '@/components/TrustStrip';
+import Marquee from '@/components/Marquee';
+import Problems from '@/components/Problems';
+import Solutions from '@/components/Solutions';
+import Features from '@/components/Features';
+import DeepDives from '@/components/DeepDives';
+import Workflow from '@/components/Workflow';
+import Plans from '@/components/Plans';
+import WhyDataCare from '@/components/WhyDataCare';
+import Hardware from '@/components/Hardware';
+import Screenshots from '@/components/Screenshots';
+import Process from '@/components/Process';
+import Reviews from '@/components/Reviews';
+import About from '@/components/About';
+import Locations from '@/components/Locations';
+import Faq from '@/components/Faq';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
+import MobileBar from '@/components/MobileBar';
+import ContactDialog from '@/components/ContactDialog';
+import Effects from '@/components/Effects';
+import Schema from '@/components/Schema';
 
+// Section order follows the SEO blueprint (S1–S20).
 export default function HomePage() {
   return (
     <>
+      <Schema />
+      <a href="#features" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-gold focus:px-4 focus:py-2 focus:text-navy">
+        Skip to content
+      </a>
+      <TopBar />
       <Header />
       <main>
         <Hero />
-
+        <TrustStrip />
         <Marquee />
-
-        <AIFeatureSection
-          id="ai-image"
-          eyebrow="AI-Powered Innovation"
-          title="Intelligent"
-          highlight="image generation"
-          description="Transform your jewellery catalogue with cutting-edge AI. Create stunning new designs, variations and visualisations that captivate your customers."
-          bullets={[
-            'AI image generation with preferred references',
-            'Auto-analysis of existing images to create new variations',
-            'Integration with live inventory for dynamic imagery',
-            'Seamless editing inside the application',
-          ]}
-          primaryCta={{ label: 'Explore Live Demo', href: 'https://dcnextai.com', external: true }}
-          secondaryCta={{ label: 'Contact Sales', href: '#contact' }}
-        >
-          <AIImageShowcase />
-        </AIFeatureSection>
-
-        <AIFeatureSection
-          id="ai-video"
-          eyebrow="Beta Feature"
-          title="AI-powered"
-          highlight="video generation"
-          description="Turn a single product photo into a stunning showcase video — with realistic lighting, reflections and 360° motion that highlights every detail."
-          bullets={[
-            'AI video creation with custom lighting effects',
-            'Generate product videos from a single image',
-            '360-degree rotation and zoom capabilities',
-            'Realistic lighting and reflection simulation',
-          ]}
-          primaryCta={{ label: 'Request Beta Access', href: '#contact' }}
-          secondaryCta={{ label: 'Talk to Sales', href: '#contact' }}
-          reverse
-        >
-          <AIVideoShowcase />
-        </AIFeatureSection>
-
-        <EnterpriseFeatureGrid />
-        <KeyFacts />
-        <HardwareEcosystem />
-        <AddOnsGrid />
-        <PricingTiers />
-        <OnboardingJourney />
-        <MobileAppsShowcase />
-        <PreviewCarousel />
-        <Testimonials />
-        <TeamSection />
-        <ContactSection />
+        <Problems />
+        <Solutions />
+        <Features />
+        <DeepDives />
+        <Workflow />
+        <Plans />
+        <WhyDataCare />
+        <Hardware />
+        <Screenshots />
+        <Process />
+        <Reviews />
+        <About />
+        <Locations />
+        <Faq />
+        <Contact />
       </main>
       <Footer />
+      <MobileBar />
+      <ContactDialog />
+      <Effects />
     </>
   );
 }

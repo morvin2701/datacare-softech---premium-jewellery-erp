@@ -1,117 +1,79 @@
-import { MapPin, Mail, Linkedin, Instagram, Facebook } from 'lucide-react';
-import Logo from './ui/Logo';
-import { COMPANY, NAV_LINKS, getWhatsAppUrl } from '../lib/data/site';
+import Logo from './Logo';
+import { company, fullIndiaAddress } from '@/lib/site';
 
-const solutions = [
-  'Retail ERP',
-  'Wholesale Management',
-  'Manufacturing Units',
-  'RFID Ecosystems',
-  'Mobile Apps',
+const quick = [
+  ['Features', '#features'],
+  ['Solutions', '#solutions'],
+  ['Plans', '#plans'],
+  ['Why DataCare', '#why-datacare'],
+  ['FAQ', '#faq'],
+  ['Contact', '#contact'],
 ];
-
-const socials = [
-  { label: 'LinkedIn', icon: Linkedin, href: '#' },
-  { label: 'Instagram', icon: Instagram, href: '#' },
-  { label: 'Facebook', icon: Facebook, href: '#' },
+const modules = [
+  ['Jewellery Billing Software', '#billing'],
+  ['Jewellery Accounting Software', '#accounting'],
+  ['Barcode & RFID Stock', '#inventory'],
+  ['Karigar & Manufacturing', '#manufacturing'],
+  ['Gold Scheme & Mobile App', '#mobile-app'],
+  ['Hardware', '#hardware'],
 ];
 
 export default function Footer() {
+  const social = Object.entries(company.social);
   return (
-    <footer className="border-t border-navy-line bg-navy text-white/70">
-      <div className="section-container py-16 lg:py-20">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+    <footer className="dark-surface relative overflow-hidden pb-24 pt-16 text-white md:pb-10">
+      <div className="container-x relative">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_1fr_1.2fr]">
           <div>
-            <Logo dark />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60">
-              Pioneering the digital transformation of the jewellery industry with
-              precision software and integrated hardware. Trusted across India &amp;
-              the UAE.
+            <Logo />
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
+              DataCare Next is jewellery software in India for retail, wholesale and manufacturing jewellers — GST &amp; HUID billing,
+              stock, karigar, accounts and mobile apps, made in Ahmedabad.
             </p>
-            <div className="mt-6 flex gap-3">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-gold hover:text-gold"
-                >
-                  <s.icon size={18} />
-                </a>
-              ))}
-            </div>
+            {social.length ? (
+              <ul className="mt-5 flex gap-3">
+                {social.map(([k, url]) => (
+                  <li key={k}>
+                    <a href={url} target="_blank" rel="noopener noreferrer" className="text-sm capitalize text-white/60 hover:text-gold-light">{k}</a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
-
+          <nav aria-label="Footer">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">Quick links</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-white/65">
+              {quick.map(([l, h]) => (
+                <li key={h}><a href={h} className="inline-block py-0.5 transition hover:text-gold-light">{l}</a></li>
+              ))}
+            </ul>
+          </nav>
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-brand text-white/45">
-              Solutions
-            </h3>
-            <ul className="mt-6 space-y-3 text-sm">
-              {solutions.map((item) => (
-                <li key={item}>
-                  <a
-                    href="#products"
-                    className="transition-colors hover:text-gold"
-                  >
-                    {item}
-                  </a>
-                </li>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">Software</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-white/65">
+              {modules.map(([l, h]) => (
+                <li key={h}><a href={h} className="inline-block py-0.5 transition hover:text-gold-light">{l}</a></li>
               ))}
             </ul>
           </div>
-
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-brand text-white/45">
-              Company
-            </h3>
-            <ul className="mt-6 space-y-3 text-sm">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="transition-colors hover:text-gold">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a
-                  href={getWhatsAppUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-colors hover:text-gold"
-                >
-                  Talk to Our Team
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-brand text-white/45">
-              Contact HQ
-            </h3>
-            <ul className="mt-6 space-y-4 text-sm">
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="mt-0.5 shrink-0 text-gold" />
-                <span className="leading-relaxed">{COMPANY.indiaAddress}</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail size={18} className="shrink-0 text-gold" />
-                <a
-                  href={`mailto:${COMPANY.email}`}
-                  className="transition-colors hover:text-gold"
-                >
-                  {COMPANY.email}
-                </a>
-              </li>
-            </ul>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">Offices</p>
+            <p className="mt-4 text-sm leading-relaxed text-white/65">
+              <span className="font-semibold text-white">India:</span> {fullIndiaAddress}
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-white/65">
+              <span className="font-semibold text-white">UAE:</span> {company.legalDubai}, {company.dubai.street}, {company.dubai.city}
+            </p>
+            <p className="mt-3 text-sm text-white/65">
+              <a href={`mailto:${company.email}`} className="inline-block py-1.5 hover:text-gold-light">{company.email}</a>
+              <br />
+              <a href="#about" data-open-contacts="call" className="inline-block py-1.5 hover:text-gold-light">Call / WhatsApp our team →</a>
+            </p>
           </div>
         </div>
-
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/45 sm:flex-row">
-          <p>
-            &copy; {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
-          </p>
-          <p>{COMPANY.hours.weekdays}</p>
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row">
+          <p>© {new Date().getFullYear()} {company.name}. All rights reserved.</p>
+          <p>DataCare Next – Jewellery Software in India · Ahmedabad · Dubai</p>
         </div>
       </div>
     </footer>

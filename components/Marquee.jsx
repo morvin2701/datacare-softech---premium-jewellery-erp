@@ -1,60 +1,19 @@
-'use client';
+import { marquee } from '@/lib/content';
 
-import { Gem } from 'lucide-react';
-
-const ITEMS = [
-  'Inventory Control',
-  'GST & Hallmarking',
-  'AI Catalog Studio',
-  'Multi-Store Sync',
-  'POS & Billing',
-  'Gold Schemes',
-  'Karigar Management',
-  'Realtime Analytics',
-];
-
-function Track({ ariaHidden = false }) {
-  return (
-    <ul
-      aria-hidden={ariaHidden || undefined}
-      className="flex shrink-0 items-center gap-10 px-5"
-    >
-      {ITEMS.map((item, i) => (
-        <li key={`${item}-${i}`} className="flex items-center gap-10">
-          <span className="font-serif text-2xl italic text-ink/80 sm:text-3xl">
-            {item}
-          </span>
-          <Gem
-            size={16}
-            className="shrink-0 text-gold"
-            aria-hidden="true"
-          />
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-/**
- * Trionn-style infinite keyword marquee band. Two identical tracks translate
- * -50% in tandem for a seamless loop. Edge-faded, pauses on hover.
- */
 export default function Marquee() {
+  const row = [...marquee, ...marquee];
   return (
-    <section
-      aria-label="Platform capabilities"
-      className="relative overflow-hidden border-y border-line bg-ivory-deep/60 py-6"
-    >
-      <div
-        className="group flex w-max animate-marquee items-center [animation-play-state:running] hover:[animation-play-state:paused] motion-reduce:animate-none"
-      >
-        <Track />
-        <Track ariaHidden />
-      </div>
-
-      {/* Edge fades */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-ivory to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-ivory to-transparent" />
-    </section>
+    <div className="relative overflow-hidden border-b border-gold/30 bg-gradient-to-r from-gold-dark via-gold to-gold-dark py-3.5" aria-label="DataCare Next modules">
+      <ul className="animate-marquee flex w-max items-center gap-8 pr-8 hover:[animation-play-state:paused]">
+        {row.map((t, i) => (
+          <li key={i} aria-hidden={i >= marquee.length} className="flex items-center gap-8 whitespace-nowrap text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+            {t}
+            <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
+              <path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z" />
+            </svg>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
