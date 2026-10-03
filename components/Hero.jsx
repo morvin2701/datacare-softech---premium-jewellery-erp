@@ -42,7 +42,7 @@ export default function Hero() {
           </p>
 
           <h1 className="mt-6 font-display text-[2.45rem] font-medium leading-[1.04] tracking-tight sm:text-[3.4rem] lg:text-[3.9rem] hero-rise">
-            <span className="gold-text italic">Jewellery Software</span> for Retail, Wholesale &amp; Manufacturing Jewellers in India
+            <span className="gold-text">Jewellery Software</span> for Retail, Wholesale &amp; Manufacturing Jewellers in India
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg hero-rise" style={{ '--d': '80ms' }}>

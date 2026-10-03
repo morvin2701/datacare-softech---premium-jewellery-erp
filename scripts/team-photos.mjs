@@ -12,7 +12,7 @@ const EYE_LINE = 0.47;   // face centre sits this far down the crop
 const files = readdirSync('assets/team');
 const byId = (id) => `assets/team/${files.find((f) => f.startsWith(`${id}-`))}`;
 const people = {
-  'sanjay-vekariya': 'assets/team/new-sanjay-vekariya.jpeg',
+  'sanjay-vekariya': 'assets/team/new-sanjaybhai-cut.png',
   'vikas-barvadiya': 'assets/team/new-vikas-barvadiya-white.png',
   'hemal-soni': byId('01'), 'vishal-gundalia': byId('02'), 'devendra-dobariya': byId('10'), 'ajay-kambaliya': byId('08'),
   'shreyash-thummar': byId('13'), 'morvin-vekariya': byId('18'),

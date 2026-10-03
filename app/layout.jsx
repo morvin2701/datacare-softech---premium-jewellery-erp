@@ -1,14 +1,14 @@
-import { Fraunces, Inter } from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 import Script from 'next/script';
 import { SITE_URL, company } from '@/lib/site';
 import './globals.css';
 
-const display = Fraunces({
+const display = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
   style: ['normal', 'italic'],
-  weight: ['400', '500', '600'],
+  weight: ['500', '600', '700'],
 });
 
 const sans = Inter({

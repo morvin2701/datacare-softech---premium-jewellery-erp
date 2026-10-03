@@ -5,7 +5,7 @@ import {
   MapPin, MessageCircle, Network, PackageSearch, PiggyBank, Printer, Radar, ReceiptIndianRupee,
   Recycle, Scale, ScanBarcode, ScanSearch, Settings2, ShieldCheck, ShoppingCart, Smartphone,
   Sparkles, SplitSquareHorizontal, Store, Tags, Timer, TrendingUp, Truck, Undo2, UserRoundSearch,
-  Users, Wallet, Wrench, Zap,
+  Users, Wallet, Wrench, Zap, Globe,
 } from 'lucide-react';
 
 // Content files reference icons by name so copy stays plain data.
@@ -16,7 +16,7 @@ const icons = {
   MapPin, MessageCircle, Network, PackageSearch, PiggyBank, Printer, Radar, ReceiptIndianRupee,
   Recycle, Scale, ScanBarcode, ScanSearch, Settings2, ShieldCheck, ShoppingCart, Smartphone,
   Sparkles, SplitSquareHorizontal, Store, Tags, Timer, TrendingUp, Truck, Undo2, UserRoundSearch,
-  Users, Wallet, Wrench, Zap,
+  Users, Wallet, Wrench, Zap, Globe,
 };
 
 export default function Icon({ name, size = 20, className, strokeWidth = 1.75 }) {

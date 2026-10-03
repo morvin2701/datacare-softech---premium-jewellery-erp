@@ -94,7 +94,9 @@
     @apply text-base leading-relaxed text-ink-muted sm:text-lg;
   }
 
+  /* Gold emphasis is always upright — the italic swash letters looked crooked. */
   .gold-text {
+    font-style: normal;
     background: linear-gradient(100deg, #9c7a2e 0%, #c9a24b 30%, #f1d58e 48%, #c9a24b 62%, #9c7a2e 100%);
     background-size: 220% auto;
     -webkit-background-clip: text;

@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import TrustStrip from '@/components/TrustStrip';
 import Marquee from '@/components/Marquee';
+import Launches from '@/components/Launches';
 import Problems from '@/components/Problems';
 import Solutions from '@/components/Solutions';
 import Features from '@/components/Features';
@@ -38,6 +39,7 @@ export default function HomePage() {
         <Hero />
         <TrustStrip />
         <Marquee />
+        <Launches />
         <Problems />
         <Solutions />
         <Features />
