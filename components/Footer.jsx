@@ -16,6 +16,7 @@ const modules = [
   ['Karigar & Manufacturing', '#manufacturing'],
   ['Gold Scheme & Mobile App', '#mobile-app'],
   ['Hardware', '#hardware'],
+  ['Web ERP login ↗', 'https://datacareweb.com/'],
 ];
 
 export default function Footer() {
@@ -52,7 +53,11 @@ export default function Footer() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">Software</p>
             <ul className="mt-4 space-y-2.5 text-sm text-white/65">
               {modules.map(([l, h]) => (
-                <li key={h}><a href={h} className="inline-block py-0.5 transition hover:text-gold-light">{l}</a></li>
+                <li key={h}>
+                  <a href={h} {...(h.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="inline-block py-0.5 transition hover:text-gold-light">
+                    {l}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>

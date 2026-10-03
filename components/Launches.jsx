@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import Icon from './Icon';
 import SectionHeading from './SectionHeading';
 import { launches } from '@/lib/content';
@@ -37,17 +37,17 @@ function WebVisual() {
           <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
           <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
           <span className="h-2 w-2 rounded-full bg-[#28c840]" />
-          <span className="ml-2 flex-1 truncate rounded-md bg-white/10 px-2 py-0.5 text-[0.55rem] text-white/60">🔒 erp.datacaresoftech.com</span>
+          <span className="ml-2 flex-1 truncate rounded-md bg-white/10 px-2 py-0.5 text-[0.55rem] text-white/60">🔒 datacareweb.com</span>
         </div>
         <div className="grid grid-cols-[4.5rem_1fr] gap-2 p-3">
           <ul className="space-y-1">
-            {['Dashboard', 'Sales', 'Stock', 'Ledger', 'Reports'].map((t, i) => (
+            {['Dashboard', 'Sales', 'Tag Stock', 'Karigar', 'Ledger'].map((t, i) => (
               <li key={t} className={`rounded px-1.5 py-1 text-[0.55rem] ${i === 0 ? 'bg-gold text-navy' : 'text-white/60'}`}>{t}</li>
             ))}
           </ul>
           <div className="space-y-2">
             <div className="grid grid-cols-3 gap-1.5">
-              {[['Today’s sale', '₹ 4.8L'], ['Gold fine', '812 g'], ['Branches', '3 live']].map(([k, v]) => (
+              {[['Cash & bank', '₹ 4.8L'], ['Outstanding', '₹ 2.1L'], ['Branches', '3 live']].map(([k, v]) => (
                 <div key={k} className="rounded-lg bg-white/[0.06] p-1.5">
                   <p className="text-[0.45rem] uppercase tracking-wider text-white/45">{k}</p>
                   <p className="text-[0.65rem] font-semibold text-gold-light">{v}</p>
@@ -135,9 +135,16 @@ export default function Launches() {
                       </li>
                     ))}
                   </ul>
-                  <a href="#contact" className="mt-auto inline-flex items-center gap-2 pt-6 font-semibold text-gold-dark transition hover:gap-3">
-                    {l.cta} <ArrowRight size={16} aria-hidden="true" />
-                  </a>
+                  <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-6">
+                    <a href="#contact" className="inline-flex items-center gap-2 font-semibold text-gold-dark transition hover:gap-3">
+                      {l.cta} <ArrowRight size={16} aria-hidden="true" />
+                    </a>
+                    {l.link ? (
+                      <a href={l.link.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-muted transition hover:text-ink">
+                        {l.link.label} <ArrowUpRight size={14} aria-hidden="true" />
+                      </a>
+                    ) : null}
+                  </div>
                 </div>
               </article>
             );
