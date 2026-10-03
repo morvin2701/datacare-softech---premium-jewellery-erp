@@ -2,21 +2,27 @@ import Logo from './Logo';
 import { company, fullIndiaAddress } from '@/lib/site';
 
 const quick = [
-  ['Features', '#features'],
-  ['Solutions', '#solutions'],
-  ['Plans', '#plans'],
-  ['Why DataCare', '#why-datacare'],
-  ['FAQ', '#faq'],
-  ['Contact', '#contact'],
+  ['What’s New', '/#launches'],
+  ['Features', '/#features'],
+  ['Plans', '/#plans'],
+  ['Why DataCare', '/#why-datacare'],
+  ['FAQ', '/#faq'],
+  ['Contact', '/#contact'],
 ];
 const modules = [
-  ['Jewellery Billing Software', '#billing'],
-  ['Jewellery Accounting Software', '#accounting'],
-  ['Barcode & RFID Stock', '#inventory'],
-  ['Karigar & Manufacturing', '#manufacturing'],
-  ['Gold Scheme & Mobile App', '#mobile-app'],
-  ['Hardware', '#hardware'],
+  ['Jewellery Billing Software', '/jewellery-billing-software/'],
+  ['Jewellery Accounting Software', '/jewellery-accounting-software/'],
+  ['RFID Jewellery Software', '/rfid-jewellery-software/'],
+  ['Karigar & Manufacturing', '/#manufacturing'],
+  ['Gold Scheme & Mobile App', '/#mobile-app'],
+  ['Hardware', '/#hardware'],
   ['Web ERP login ↗', 'https://datacareweb.com/'],
+];
+const cities = [
+  ['Jewellery software in Surat', '/jewellery-software-surat/'],
+  ['Jewellery software in Rajkot', '/jewellery-software-rajkot/'],
+  ['Jewellery software in Mumbai', '/jewellery-software-mumbai/'],
+  ['All cities & states', '/#locations'],
 ];
 
 export default function Footer() {
@@ -63,7 +69,13 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">Offices</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">By city</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-white/65">
+              {cities.map(([l, h]) => (
+                <li key={h}><a href={h} className="inline-block py-0.5 transition hover:text-gold-light">{l}</a></li>
+              ))}
+            </ul>
+            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">Offices</p>
             <p className="mt-4 text-sm leading-relaxed text-white/65">
               <span className="font-semibold text-white">India:</span> {fullIndiaAddress}
             </p>
@@ -73,7 +85,7 @@ export default function Footer() {
             <p className="mt-3 text-sm text-white/65">
               <a href={`mailto:${company.email}`} className="inline-block py-1.5 hover:text-gold-light">{company.email}</a>
               <br />
-              <a href="#about" data-open-contacts="call" className="inline-block py-1.5 hover:text-gold-light">Call / WhatsApp our team →</a>
+              <a href="/#about" data-open-contacts="call" className="inline-block py-1.5 hover:text-gold-light">Call / WhatsApp our team →</a>
             </p>
           </div>
         </div>

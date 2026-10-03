@@ -6,10 +6,10 @@ export default function TopBar() {
     <div className="hidden border-b border-white/10 bg-navy text-[0.8rem] text-white/70 md:block">
       <div className="container-x flex h-10 items-center justify-between gap-6">
         <div className="flex items-center gap-6">
-          <a href="#about" data-open-contacts="call" className="inline-flex items-center gap-2 transition hover:text-gold-light">
+          <a href="/#about" data-open-contacts="call" className="inline-flex items-center gap-2 transition hover:text-gold-light">
             <Phone size={14} className="text-gold" aria-hidden="true" /> Call our sales team
           </a>
-          <a href="#about" data-open-contacts="whatsapp" className="inline-flex items-center gap-2 transition hover:text-gold-light">
+          <a href="/#about" data-open-contacts="whatsapp" className="inline-flex items-center gap-2 transition hover:text-gold-light">
             <MessageCircle size={14} className="text-gold" aria-hidden="true" /> WhatsApp for a free demo
           </a>
         </div>

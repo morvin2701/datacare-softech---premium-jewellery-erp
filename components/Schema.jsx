@@ -4,7 +4,7 @@ import { states } from '@/lib/coverage';
 
 // JSON-LD for Google. No self-awarded review stars (Google does not allow them
 // for your own business) — the rating lives on the Google Business Profile.
-export default function Schema() {
+export default function Schema({ faqs: faqList = faqs, page = null }) {
   const orgId = `${SITE_URL}/#organization`;
   const sameAs = Object.values(company.social);
   const intl = (p) => p.replace(/[^\d+]/g, '');
@@ -102,13 +102,37 @@ export default function Schema() {
     },
     {
       '@type': 'FAQPage',
-      mainEntity: faqs.map((f) => ({
+      mainEntity: faqList.map((f) => ({
         '@type': 'Question',
         name: f.q,
         acceptedAnswer: { '@type': 'Answer', text: f.a },
       })),
     },
   ];
+
+  if (page) {
+    graph.push(
+      {
+        '@type': 'WebPage',
+        '@id': `${page.url}#webpage`,
+        url: page.url,
+        name: page.title,
+        description: page.description,
+        inLanguage: 'en-IN',
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        about: { '@id': orgId },
+        breadcrumb: { '@id': `${page.url}#breadcrumb` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${page.url}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: page.breadcrumb, item: page.url },
+        ],
+      }
+    );
+  }
 
   return (
     <script

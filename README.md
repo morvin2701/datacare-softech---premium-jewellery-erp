@@ -27,8 +27,7 @@ page and browser caching. If IIS shows "500.19" after upload, remove the
 Delete the old site's files from the web root first; the old `assets/js/*.js`
 bundle and the old `index.html` must not remain.
 
-**Nothing in this repo affects Google until `out/` is live.** Editing files in
-`legacy_vite/` or `legacy_next/` does nothing — they are archived copies.
+**Nothing in this repo affects Google until `out/` is live.**
 
 After going live: Google Search Console → submit `https://www.datacaresoftech.com/sitemap.xml`
 → URL Inspection → Request indexing. To add the Search Console verification tag, set
@@ -41,6 +40,8 @@ After going live: Google Search Console → submit `https://www.datacaresoftech.
 | Years, customers, Google rating, address, email, hours, social & app links | `lib/site.js` → `company` |
 | Team (leaders, Dubai FZCO, members, phone numbers, photos) | `lib/site.js` |
 | All page copy: features, plans matrix, FAQ, cities, hardware | `lib/content.js` |
+| Landing pages (`/jewellery-billing-software/`, `/jewellery-software-surat/` …): copy, FAQs, meta | `lib/landing.js` — add an entry and it is built, linked in the footer list you choose, and added to the sitemap |
+| Map: state counts and cities | `lib/coverage.js` |
 | Testimonials (leave empty rather than invent) | `components/Reviews.jsx` |
 | Title / meta description / analytics IDs | `app/layout.jsx` |
 
@@ -58,4 +59,3 @@ monogram is shown.
 - No self-added review stars in schema. One consistent set of numbers everywhere.
 - No single "main" phone number — Call / WhatsApp buttons open the team directory.
 
-Old code is archived (not deleted) in `legacy_next/` and `legacy_vite/`.

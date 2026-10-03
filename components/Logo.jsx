@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Logo({ dark = true }) {
   return (
-    <a href="#home" className="flex items-center gap-2.5" aria-label="DataCare Softech – Jewellery Software home">
+    <a href="/#home" className="flex items-center gap-2.5" aria-label="DataCare Softech – Jewellery Software home">
       <Image
         src="/images/datacare-softech-logo.webp"
         alt="DataCare Softech - Jewellery Software"

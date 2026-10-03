@@ -10,5 +10,3 @@ out/
 !.vscode/extensions.json
 .idea
 
-# archived copies of old site media (duplicates of assets/)
-legacy_next/public-old/

@@ -1,4 +1,4 @@
-// Converts the raw screenshots in /assets, /new images and /public into small,
+// Converts the raw screenshots in /assets into small,
 // descriptively named WebP files in /public/images (SEO: file name + size).
 // Run with: npm run images
 import sharp from 'sharp';
@@ -12,17 +12,12 @@ const jobs = [
   // [source, output name, max width, quality]
   ['assets/Next.jpg', 'datacare-next-jewellery-software-desktop', 1600, 78],
   ['assets/01.png', 'datacare-next-on-desktop-laptop-tablet-mobile', 1400, 80],
-  ['assets/04.png', 'jewellery-e-catalogue-app-screens', 1200, 80],
-  ['assets/05.png', 'gold-scheme-app-screens', 1200, 80],
   ['assets/HeroTablet.PNG', 'gold-scheme-app-home', 560, 80],
-  ['new images/IMG_1837.PNG', 'owner-app-dashboard', 560, 80],
-  ['new images/IMG_1838.PNG', 'owner-app-product-list', 560, 80],
-  ['new images/IMG_1839.PNG', 'owner-app-tag-stock-with-images', 560, 80],
-  ['new images/IMG_1840.PNG', 'owner-app-tag-estimate', 560, 80],
-  ['new images/IMG_1841.PNG', 'owner-app-stock-report', 560, 80],
-  ['new images/IMG_1842.PNG', 'owner-app-ledger-report', 560, 80],
-  ['new images/IMG_1843.PNG', 'owner-app-ledger-detail-gold-silver', 560, 80],
-  ['assets/HeroMobile.PNG', 'owner-app-daily-gold-silver-rate', 560, 80],
+  ['assets/mobile-screens/IMG_1837.PNG', 'owner-app-dashboard', 560, 80],
+  ['assets/mobile-screens/IMG_1839.PNG', 'owner-app-tag-stock-with-images', 560, 80],
+  ['assets/mobile-screens/IMG_1840.PNG', 'owner-app-tag-estimate', 560, 80],
+  ['assets/mobile-screens/IMG_1841.PNG', 'owner-app-stock-report', 560, 80],
+  ['assets/mobile-screens/IMG_1842.PNG', 'owner-app-ledger-report', 560, 80],
   ['assets/logo.png', 'datacare-softech-logo', 256, 90],
 ];
 

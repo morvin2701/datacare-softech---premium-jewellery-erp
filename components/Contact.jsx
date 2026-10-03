@@ -24,10 +24,10 @@ export default function Contact() {
               <p className="font-display text-xl">Prefer to talk?</p>
               <p className="mt-1 text-sm text-white/60">Pick anyone from our team and call or WhatsApp them directly.</p>
               <div className="mt-5 grid grid-cols-2 gap-2">
-                <a href="#about" data-open-contacts="call" className="btn-ghost-dark">
+                <a href="/#about" data-open-contacts="call" className="btn-ghost-dark">
                   <Phone size={17} aria-hidden="true" /> Call
                 </a>
-                <a href="#about" data-open-contacts="whatsapp" className="btn bg-[#0F7A40] text-white hover:brightness-110">
+                <a href="/#about" data-open-contacts="whatsapp" className="btn bg-[#0F7A40] text-white hover:brightness-110">
                   <MessageCircle size={17} aria-hidden="true" /> WhatsApp
                 </a>
               </div>

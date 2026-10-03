@@ -16,7 +16,7 @@ export default function Header() {
     window.addEventListener('scroll', onScroll, { passive: true });
 
     // Highlight the menu item for the section in view.
-    const ids = nav.map((n) => n.href.slice(1));
+    const ids = nav.map((n) => n.href.split('#')[1]);
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => e.isIntersecting && setActive(e.target.id));
@@ -52,7 +52,7 @@ export default function Header() {
         <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {nav.map((item) => {
-              const isActive = active === item.href.slice(1);
+              const isActive = active === item.href.split('#')[1];
               return (
                 <li key={item.href}>
                   <a

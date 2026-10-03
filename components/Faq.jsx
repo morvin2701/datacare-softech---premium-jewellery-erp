@@ -78,7 +78,7 @@ export default function Faq() {
             <p className="mt-1 text-sm text-white/60">Call or WhatsApp any member of our team — we reply Monday to Saturday, 10 AM to 7 PM.</p>
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-            <a href="#about" data-open-contacts="whatsapp" className="btn-ghost-dark">
+            <a href="/#about" data-open-contacts="whatsapp" className="btn-ghost-dark">
               <MessageCircle size={16} className="text-[#3ddc84]" aria-hidden="true" /> Ask on WhatsApp
             </a>
             <a href="#contact" className="btn-gold">
