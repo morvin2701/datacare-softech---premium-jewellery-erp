@@ -13,7 +13,7 @@ export default function Solutions() {
               One Jewellery ERP for <em className="gold-text">every type</em> of jewellery business
             </>
           }
-          intro="Retailer, wholesaler, manufacturer or chain — DataCare Next adapts to how you work, and grows with you from a single counter to many branches."
+          intro="Retailer, wholesaler, manufacturer or chain — one jewellery management software that adapts to how you work, and grows with you from a single counter to many branches."
         />
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {solutions.map((s, i) => (

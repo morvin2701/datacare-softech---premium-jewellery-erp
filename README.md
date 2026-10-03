@@ -17,7 +17,18 @@ Don't open `out/index.html` by double-clicking — the browser can't load the st
 scripts from `file://`. Always preview with `npm start` or `npm run dev`.
 
 **Deploy:** upload the contents of `out/` to the web root of www.datacaresoftech.com
-(same hosting as the old site). No Node server is needed.
+(same hosting as the old site — Microsoft IIS). No Node server is needed.
+
+The host is IIS, so `out/web.config` must go up with the site: it adds the
+`.webp` / `.woff2` MIME types (without it every image 404s), the branded 404
+page and browser caching. If IIS shows "500.19" after upload, remove the
+`<httpErrors>` block from web.config and retry.
+
+Delete the old site's files from the web root first; the old `assets/js/*.js`
+bundle and the old `index.html` must not remain.
+
+**Nothing in this repo affects Google until `out/` is live.** Editing files in
+`legacy_vite/` or `legacy_next/` does nothing — they are archived copies.
 
 After going live: Google Search Console → submit `https://www.datacaresoftech.com/sitemap.xml`
 → URL Inspection → Request indexing. To add the Search Console verification tag, set

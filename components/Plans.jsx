@@ -1,16 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowRight, Check, ChevronDown, Diamond, Download, Minus, Plus } from 'lucide-react';
+import { ArrowRight, ChevronDown, Diamond, Download } from 'lucide-react';
 import { PLAN_FILTERS, editionCards, editionMatrix, editions } from '@/lib/content';
 
 function Cell({ v }) {
-  if (v === true) return <Check size={17} strokeWidth={2.6} className="mx-auto text-emerald-600" aria-label="Included" />;
-  if (v === false) return <Minus size={15} className="mx-auto text-ink-faint/50" aria-label="Not included" />;
+  if (v === true) return <span className="ico ico-check text-[17px] text-emerald-600" role="img" aria-label="Included" />;
+  if (v === false) return <span className="ico ico-minus text-[15px] text-ink-faint/50" role="img" aria-label="Not included" />;
   if (v === 'add')
     return (
       <span className="inline-flex items-center gap-0.5 rounded-full bg-gold-soft px-2 py-0.5 text-[0.66rem] font-semibold text-gold-dark" title="Paid add-on">
-        <Plus size={10} strokeWidth={3} aria-hidden="true" /> Add-on
+        <span className="ico ico-plus text-[10px]" aria-hidden="true" /> Add-on
       </span>
     );
   return <span className="text-xs font-semibold text-ink">{v}</span>;
@@ -83,7 +83,7 @@ export default function Plans() {
                 <ul className="mt-6 flex-1 space-y-3.5 text-left">
                   {e.features.map((f) => (
                     <li key={f} className={`flex items-start gap-2.5 text-[0.9rem] leading-snug ${dark ? 'text-white/85' : 'text-ink-muted'}`}>
-                      <Check size={15} strokeWidth={3} className={`mt-0.5 shrink-0 ${dark ? 'text-gold-light' : 'text-gold-dark'}`} aria-hidden="true" />
+                      <span className={`ico ico-check mt-0.5 shrink-0 text-[15px] ${dark ? 'text-gold-light' : 'text-gold-dark'}`} aria-hidden="true" />
                       {f}
                     </li>
                   ))}

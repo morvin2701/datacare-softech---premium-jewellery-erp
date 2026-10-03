@@ -1,4 +1,4 @@
-import { Check, Quote } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import Icon from './Icon';
 import SectionHeading from './SectionHeading';
 import { comparison, reasons } from '@/lib/content';
@@ -48,7 +48,7 @@ export default function WhyDataCare() {
                     <th scope="row" className="px-4 py-3 text-left font-normal text-ink sm:px-5">{label}</th>
                     <td className="bg-gold-soft/50 px-3 py-3 text-center">
                       {ours === true ? (
-                        <Check size={18} strokeWidth={2.6} className="mx-auto text-emerald-600" aria-label="Yes" />
+                        <span className="ico ico-check text-[18px] text-emerald-600" role="img" aria-label="Yes" />
                       ) : (
                         <span className="text-xs font-semibold text-gold-dark">{ours}</span>
                       )}

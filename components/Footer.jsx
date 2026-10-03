@@ -28,8 +28,9 @@ export default function Footer() {
           <div>
             <Logo />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
-              DataCare Next is jewellery software in India for retail, wholesale and manufacturing jewellers — GST &amp; HUID billing,
-              stock, karigar, accounts and mobile apps, made in Ahmedabad.
+              DataCare Next is jewellery billing, accounting and management software for retail, wholesale and manufacturing
+              jewellers in India — GST &amp; HUID billing, barcode and RFID stock, karigar, girvi, gold schemes, WhatsApp and
+              mobile apps. Made in Ahmedabad, used across Gujarat and India.
             </p>
             {social.length ? (
               <ul className="mt-5 flex gap-3">

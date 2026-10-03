@@ -45,7 +45,7 @@ export default function Features() {
               {total} features. <em className="gold-text">One jewellery software.</em>
             </>
           }
-          intro="Billing, stock, karigar, accounts, girvi, gold schemes and mobile — pick a module to see what's inside."
+          intro="Billing, barcode stock, karigar, accounts, girvi, gold schemes and mobile — one jewellery management software. Pick a module to see what's inside."
         />
 
         {/* Module tabs */}

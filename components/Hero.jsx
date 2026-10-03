@@ -46,9 +46,9 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg hero-rise" style={{ '--d': '80ms' }}>
-            Run your entire jewellery business from one software. DataCare Next handles GST and HUID billing, gold and silver
-            stock, barcode and RFID tags, karigar work, old gold exchange, gold schemes and accounts — with a mobile app for
-            owners and local support from our team in Ahmedabad.
+            DataCare Next is complete jewellery billing, accounting and stock management software. GST and HUID billing, gold and
+            silver stock with barcode and RFID tags, karigar work, old gold exchange, gold schemes and full accounts — with a
+            mobile app for owners and local support from our team in Ahmedabad.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row hero-in" style={{ '--d': '200ms' }}>

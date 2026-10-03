@@ -1,5 +1,6 @@
 import { faqs } from '@/lib/content';
 import { SITE_URL, company, dubaiTeam, teamLeaders } from '@/lib/site';
+import { states } from '@/lib/coverage';
 
 // JSON-LD for Google. No self-awarded review stars (Google does not allow them
 // for your own business) — the rating lives on the Google Business Profile.
@@ -35,6 +36,11 @@ export default function Schema() {
           areaServed: 'AE',
         })),
       ],
+      knowsAbout: [
+        'Jewellery billing software', 'Jewellery accounting software', 'Jewellery ERP', 'Jewellery management software',
+        'RFID jewellery inventory', 'Barcode tagging for jewellery', 'Karigar management', 'Gold saving scheme management',
+        'Girvi and gold loan management', 'GST and HUID compliance for jewellers', 'WhatsApp Business API for jewellers',
+      ],
       ...(sameAs.length ? { sameAs } : {}),
     },
     {
@@ -63,7 +69,10 @@ export default function Schema() {
           closes: '19:00',
         },
       ],
-      areaServed: ['IN', 'AE'],
+      areaServed: [
+        ...states.map((s) => ({ '@type': 'State', name: s.name, containedInPlace: { '@type': 'Country', name: 'India' } })),
+        { '@type': 'Country', name: 'United Arab Emirates' },
+      ],
     },
     {
       '@type': 'SoftwareApplication',
@@ -75,6 +84,11 @@ export default function Schema() {
       image: `${SITE_URL}/images/datacare-next-jewellery-software-desktop.webp`,
       description:
         'Jewellery software for retail, wholesale and manufacturing jewellers in India: GST & HUID billing, barcode and RFID stock, karigar, old gold, girvi, gold saving scheme, metal + cash accounting and mobile apps.',
+      featureList: [
+        'GST & HUID jewellery billing', 'Barcode / QR tag printing', 'RFID stock verification', 'Karigar issue & receipt with fine-weight balance',
+        'Metal + cash ledgers', 'Old gold exchange & refinery', 'Girvi / gold loan', 'Gold & amount saving schemes',
+        'WhatsApp Business API messaging', 'Offline order app', 'Web-based ERP', 'Owner mobile app (Android & iOS)', 'Multi-branch & multi-company',
+      ],
       publisher: { '@id': orgId },
       offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'INR', url: `${SITE_URL}/#plans` },
     },
