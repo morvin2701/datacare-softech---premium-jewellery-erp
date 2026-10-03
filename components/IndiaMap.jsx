@@ -52,7 +52,7 @@ export default function IndiaMap() {
   return (
     <div className="grid items-stretch gap-6 lg:grid-cols-[1fr_20rem]">
       {/* Map stage */}
-      <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-navy-light/40 p-4 sm:p-6">
+      <div className="relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-navy-light/40 p-4 sm:p-6">
         <div className="grid-lines pointer-events-none absolute inset-0" aria-hidden="true" />
 
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-3">
@@ -74,7 +74,7 @@ export default function IndiaMap() {
           </p>
         </div>
 
-        <div className="relative mt-3 aspect-square w-full sm:aspect-[1000/900]">
+        <div className="relative mt-3 min-h-[24rem] w-full flex-1 sm:min-h-[30rem]">
           {/* India */}
           <svg
             viewBox={`0 0 ${INDIA.w} ${INDIA.h}`}
@@ -194,7 +194,7 @@ export default function IndiaMap() {
       </div>
 
       {/* Side panel */}
-      <aside className="flex max-h-[44rem] flex-col rounded-[1.75rem] border border-white/10 bg-navy-light/40 p-6 lg:max-h-none">
+      <aside className="flex max-h-[44rem] flex-col rounded-[1.75rem] border border-white/10 bg-navy-light/40 p-6 lg:max-h-[52rem]">
         <p className="eyebrow !text-gold-light">{sel ? `${sel.name} cities` : 'State-wise installations'}</p>
         {sel ? (
           <>
@@ -202,7 +202,7 @@ export default function IndiaMap() {
             <p className="mt-1 text-sm text-white/55">
               {sel.name === 'Gujarat' ? 'Our home state — head office in Ahmedabad, on-site support across Gujarat.' : 'Installation, training and support handled remotely, with visits on request.'}
             </p>
-            <ul className="mt-5 flex flex-wrap gap-1.5 overflow-y-auto">
+            <ul className="mt-5 flex min-h-0 flex-1 flex-wrap content-start gap-1.5 overflow-y-auto">
               {sel.cities.map((c) => (
                 <li key={c.name} className={`rounded-full px-2.5 py-1 text-xs ${c.hq ? 'bg-gold font-semibold text-navy' : 'border border-white/10 text-white/80'}`}>
                   {c.name}
@@ -219,7 +219,7 @@ export default function IndiaMap() {
               {fmt(totalCustomers)}+ jewellers · {totalCities} cities
             </p>
             <p className="mt-1 text-sm text-white/55">Click a state to zoom in and see every city.</p>
-            <ol className="mt-5 space-y-1 overflow-y-auto pr-1 text-sm">
+            <ol className="mt-5 min-h-0 flex-1 space-y-1 overflow-y-auto pr-1 text-sm">
               {states.map((s) => (
                 <li key={s.name}>
                   <button
