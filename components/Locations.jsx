@@ -14,7 +14,7 @@ export default function Locations() {
               Jewellery Software <em className="gold-text">across India</em>
             </>
           }
-          intro={`${totalCustomers.toLocaleString('en-IN')}+ jewellers across ${states.length} states and union territories run DataCare Next. We are jewellery software specialists for Ahmedabad, Surat, Rajkot, Vadodara and every city in Gujarat, with remote installation, training and support anywhere in India.`}
+          intro={`${totalCustomers.toLocaleString('en-IN')}+ jewellers across ${states.length} states and union territories run DataCare Next. We are jewellery software specialists for Ahmedabad, Surat, Rajkot, Vadodara and every city in Gujarat, with on-site installation, training and service visits all over India and the UAE.`}
         />
         <div className="mt-14" data-reveal="zoom">
           <IndiaMap />

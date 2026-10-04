@@ -200,7 +200,7 @@ export default function IndiaMap() {
           <>
             <p className="mt-3 font-display text-2xl text-white">{fmt(sel.count)}+ jewellers in {sel.name}</p>
             <p className="mt-1 text-sm text-white/55">
-              {sel.name === 'Gujarat' ? 'Our home state — head office in Ahmedabad, on-site support across Gujarat.' : 'Installation, training and support handled remotely, with visits on request.'}
+              {sel.name === 'Gujarat' ? 'Our home state — head office in Ahmedabad, on-site support across Gujarat.' : 'On-site installation, training and service visits, backed by phone, WhatsApp and remote support.'}
             </p>
             <ul className="mt-5 flex min-h-0 flex-1 flex-wrap content-start gap-1.5 overflow-y-auto">
               {sel.cities.map((c) => (
@@ -242,7 +242,7 @@ export default function IndiaMap() {
           </>
         )}
         <p className="mt-5 border-t border-white/10 pt-4 text-xs text-white/45">
-          Also serving jewellers in Dubai &amp; the UAE through Datacare Softech FZCO.
+          On-site visits all over the UAE through Datacare Softech FZCO, Dubai.
         </p>
       </aside>
     </div>

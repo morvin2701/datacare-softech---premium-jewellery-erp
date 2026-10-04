@@ -1,4 +1,4 @@
-import { Headphones, MessageCircle, MonitorSmartphone, MapPin } from 'lucide-react';
+import { Globe2, Headphones, MessageCircle, MonitorSmartphone, MapPin } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 import { process } from '@/lib/content';
 import { company } from '@/lib/site';
@@ -8,7 +8,8 @@ export default function Process() {
     { icon: Headphones, label: 'Phone support' },
     { icon: MessageCircle, label: 'WhatsApp support' },
     { icon: MonitorSmartphone, label: 'Remote desktop (AnyDesk)' },
-    { icon: MapPin, label: 'On-site visits in Ahmedabad' },
+    { icon: MapPin, label: 'On-site visits all over India' },
+    { icon: Globe2, label: 'On-site visits all over UAE' },
   ];
   return (
     <section id="process" className="section relative bg-ivory-deep">
