@@ -14,7 +14,9 @@ export default function Effects() {
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
-            e.target.classList.add('is-visible');
+            // Attribute, not class: a React re-render rewrites className and
+            // would wipe the class, hiding the element again.
+            e.target.setAttribute('data-revealed', '');
             io.unobserve(e.target);
           }
         }

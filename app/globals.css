@@ -231,7 +231,8 @@
   .js [data-reveal='zoom'] {
     transform: scale(0.94);
   }
-  .js [data-reveal].is-visible {
+  .js [data-reveal].is-visible,
+  .js [data-reveal][data-revealed] {
     opacity: 1;
     transform: none;
   }

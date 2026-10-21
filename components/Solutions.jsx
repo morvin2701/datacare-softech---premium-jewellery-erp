@@ -23,7 +23,7 @@ export default function Solutions() {
           }
           intro="Retailer, wholesaler, manufacturer or chain — one jewellery management software that adapts to how you work, and grows with you from a single counter to many branches."
         />
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:mt-14 lg:gap-5 lg:grid-cols-3">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:mt-14 lg:gap-5 lg:grid-cols-3" data-reveal>
           {solutions.map((s, i) => {
             const expanded = open === i;
             return (
@@ -32,7 +32,6 @@ export default function Solutions() {
                 className={`spot group relative overflow-hidden rounded-2xl border bg-white shadow-card transition duration-500 ease-premium lg:rounded-card lg:border-line lg:p-7 lg:hover:-translate-y-1 lg:hover:shadow-lift ${
                   expanded ? 'border-gold/50' : 'border-line'
                 }`}
-                data-reveal
                 style={{ '--delay': `${(i % 3) * 90}ms` }}
               >
                 <span aria-hidden="true" className="absolute right-6 top-5 hidden font-display text-5xl italic leading-none text-gold/20 transition duration-700 group-hover:text-gold/50 lg:block">
