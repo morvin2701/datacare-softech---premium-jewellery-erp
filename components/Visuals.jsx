@@ -4,7 +4,7 @@ import { phoneScreens } from '@/lib/content';
 // Decorative, animated product illustrations for the deep-dive blocks.
 // All are CSS/SVG only — no JavaScript, no layout shift.
 
-const frame = 'relative flex h-full w-full min-h-[26rem] flex-col justify-between gap-6 overflow-hidden rounded-[1.75rem] border border-white/10 dark-surface p-6 sm:p-8 xl:p-10 shadow-lift';
+const frame = 'relative flex h-full w-full min-h-[20rem] lg:min-h-[26rem] flex-col justify-between gap-6 overflow-hidden rounded-[1.75rem] border border-white/10 dark-surface p-6 sm:p-8 xl:p-10 shadow-lift';
 
 // Window-style header strip so each visual reads as a real DataCare screen.
 function Chrome({ title, badge }) {
@@ -18,7 +18,7 @@ function Chrome({ title, badge }) {
         </span>
         <p className="text-sm font-semibold text-white/85">{title}</p>
       </div>
-      {badge ? <span className="rounded-full bg-gold/15 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-wider text-gold-light ring-1 ring-gold/30">{badge}</span> : null}
+      {badge ? <span className="shrink-0 whitespace-nowrap rounded-full bg-gold/15 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-wider text-gold-light ring-1 ring-gold/30">{badge}</span> : null}
     </div>
   );
 }
@@ -47,7 +47,7 @@ export function BillingVisual() {
   return (
     <div className={frame} aria-hidden="true">
       <div className="grid-lines absolute inset-0" />
-      <Chrome title="New Sale · Counter 1 · Bill #1043" badge="Scan to bill" />
+      <Chrome title="New Sale · Bill #1043" badge="Scan to bill" />
       <div className="relative grid items-center gap-6 sm:grid-cols-[0.8fr_1fr]">
         <div className="relative mx-auto w-44 rounded-xl bg-white p-4 text-ink shadow-lift">
           <p className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-gold-dark">Jewellery tag</p>
@@ -73,9 +73,9 @@ export function BillingVisual() {
           ))}
         </ul>
       </div>
-      <div className="relative flex items-center justify-between rounded-xl bg-navy px-4 py-3 ring-1 ring-gold/30">
-        <span className="text-[0.68rem] uppercase tracking-[0.16em] text-white/60">Net payable · GST incl.</span>
-        <span className="font-display text-2xl text-gold-light">₹ 1,13,960</span>
+      <div className="relative flex items-center justify-between gap-3 rounded-xl bg-navy px-4 py-3 ring-1 ring-gold/30">
+        <span className="text-[0.68rem] uppercase tracking-[0.16em] text-white/60">Net payable</span>
+        <span className="whitespace-nowrap font-display text-2xl text-gold-light">₹ 1,13,960</span>
       </div>
       <StatusRow items={['HUID verified', 'Rate synced 10:02 AM', 'Print · WhatsApp ready']} />
     </div>
@@ -198,11 +198,11 @@ export function KarigarVisual() {
           </g>
         ))}
       </svg>
-      <div className="relative mt-2 grid grid-cols-3 gap-3 text-center">
+      <div className="relative mt-2 grid grid-cols-3 gap-2 text-center sm:gap-3">
         {[['Issued', '250.000 g'], ['Received', '247.850 g'], ['Wastage', '2.150 g']].map(([k, v]) => (
-          <div key={k} className="rounded-xl bg-white/5 px-2 py-3 ring-1 ring-white/10">
-            <p className="text-[0.62rem] uppercase tracking-[0.14em] text-white/50">{k}</p>
-            <p className="mt-1 font-display text-base text-gold-light">{v}</p>
+          <div key={k} className="rounded-xl bg-white/5 px-1.5 py-3 ring-1 ring-white/10">
+            <p className="text-[0.6rem] uppercase tracking-[0.1em] text-white/50">{k}</p>
+            <p className="mt-1 whitespace-nowrap font-display text-sm text-gold-light sm:text-base">{v}</p>
           </div>
         ))}
       </div>
