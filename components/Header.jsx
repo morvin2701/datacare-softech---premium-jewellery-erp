@@ -34,7 +34,10 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
+    if (!open) return;
+    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
   const light = scrolled && !open;
@@ -95,17 +98,32 @@ export default function Header() {
 
       <div
         id="mobile-menu"
-        className={`fixed inset-x-0 top-[var(--header-h)] h-[calc(100dvh-var(--header-h))] origin-top overflow-y-auto bg-navy px-4 pb-10 pt-6 transition duration-500 ease-premium lg:hidden ${
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        onClick={(e) => e.target.closest('a') && setOpen(false)}
+        className={`fixed inset-0 z-[60] flex flex-col overflow-y-auto overscroll-contain bg-navy transition duration-500 ease-premium lg:hidden ${
           open ? 'visible opacity-100' : 'invisible -translate-y-3 opacity-0'
         }`}
       >
+        <div className="container-x flex h-[var(--header-h)] shrink-0 items-center justify-between border-b border-white/10">
+          <Logo />
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white"
+          >
+            <X size={20} />
+          </button>
+        </div>
+        <div className="px-4 pb-10 pt-6">
         <nav aria-label="Mobile">
           <ul className="divide-y divide-white/10 border-y border-white/10">
             {nav.map((item, i) => (
               <li key={item.href}>
                 <a
                   href={item.href}
-                  onClick={() => setOpen(false)}
                   style={{ transitionDelay: open ? `${80 + i * 40}ms` : '0ms' }}
                   className={`flex items-center justify-between py-4 font-display text-2xl text-white transition duration-500 ${
                     open ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
@@ -117,9 +135,10 @@ export default function Header() {
             ))}
           </ul>
         </nav>
-        <a href="#contact" onClick={() => setOpen(false)} className="btn-gold mt-8 w-full">
+        <a href="#contact" className="btn-gold mt-8 w-full">
           Book Free Demo
         </a>
+        </div>
       </div>
     </header>
   );
