@@ -9,7 +9,7 @@ import { launches } from '@/lib/content';
 
 /* ---------- Visuals: one per launch, all fill the same dark panel ---------- */
 
-const panel = 'dark-surface relative flex min-h-[26rem] w-full items-center justify-center overflow-hidden rounded-[1.75rem] border border-white/10 p-6 shadow-lift sm:p-10';
+const panel = 'dark-surface relative flex min-h-[18rem] lg:min-h-[26rem] w-full items-center justify-center overflow-hidden rounded-[1.75rem] border border-white/10 p-6 shadow-lift sm:p-10';
 
 function OfflineVisual({ screens }) {
   return (
@@ -144,6 +144,18 @@ function visualFor(l) {
   return null;
 }
 
+function Expandable({ text }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="mt-3">
+      <p className={`leading-relaxed text-ink-muted ${open ? '' : 'line-clamp-3 lg:line-clamp-none'}`}>{text}</p>
+      <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open} className="mt-1.5 text-sm font-semibold text-gold-dark lg:hidden">
+        {open ? 'Show less' : 'Read more'}
+      </button>
+    </div>
+  );
+}
+
 /* ------------------------------ The list ------------------------------ */
 
 // Server HTML lists launches in file order (good for search engines); after
@@ -161,13 +173,17 @@ export default function LaunchList() {
   }, []);
 
   return (
-    <div className="mt-6 divide-y divide-line/80">
+    <div className="mt-6 space-y-5 lg:space-y-0 lg:divide-y lg:divide-line/80">
       {order.map((idx, pos) => {
         const l = launches[idx];
         const flip = pos % 2 === 1;
         return (
-          <article key={l.id} id={l.id} className="grid items-center gap-10 py-14 md:py-20 lg:grid-cols-2 lg:gap-16">
-            <div className={flip ? 'lg:order-2' : ''} data-reveal={flip ? 'right' : 'left'}>
+          <article
+            key={l.id}
+            id={l.id}
+            className="grid items-center gap-6 rounded-[1.5rem] border border-line bg-white p-4 shadow-card sm:p-6 lg:gap-16 lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:py-20 lg:shadow-none lg:grid-cols-2"
+          >
+            <div className={`order-2 ${flip ? 'lg:order-2' : 'lg:order-1'}`} data-reveal={flip ? 'right' : 'left'}>
               <div className="flex items-center gap-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-gold px-3 py-1 text-[0.66rem] font-bold uppercase tracking-wider text-navy shadow-gold">
                   <Sparkles size={11} aria-hidden="true" /> {l.badge}
@@ -176,17 +192,17 @@ export default function LaunchList() {
                   Launch {String(pos + 1).padStart(2, '0')} of {launches.length}
                 </span>
               </div>
-              <div className="mt-5 flex items-center gap-4">
-                <span className="icon-chip !h-12 !w-12">
-                  <Icon name={l.icon} size={22} />
+              <div className="mt-4 flex items-center gap-3 lg:mt-5 lg:gap-4">
+                <span className="icon-chip !h-10 !w-10 lg:!h-12 lg:!w-12">
+                  <Icon name={l.icon} size={20} />
                 </span>
-                <h3 className="font-display text-[2rem] font-medium leading-tight text-ink sm:text-[2.4rem]">{l.title}</h3>
+                <h3 className="font-display text-[1.6rem] font-medium leading-tight text-ink sm:text-[2rem] lg:text-[2.4rem]">{l.title}</h3>
               </div>
-              <p className="mt-4 text-lg font-medium text-ink">{l.tagline}</p>
-              <p className="mt-3 leading-relaxed text-ink-muted">{l.text}</p>
-              <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+              <p className="mt-3 text-base font-medium text-ink lg:mt-4 lg:text-lg">{l.tagline}</p>
+              <Expandable text={l.text} />
+              <ul className="mt-5 grid grid-cols-2 gap-x-3 gap-y-2.5 lg:mt-6">
                 {l.points.map((pt) => (
-                  <li key={pt} className="flex items-start gap-2.5 text-sm text-ink">
+                  <li key={pt} className="flex items-start gap-2 text-[0.82rem] leading-snug text-ink lg:gap-2.5 lg:text-sm">
                     <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold text-navy">
                       <Check size={12} strokeWidth={3} aria-hidden="true" />
                     </span>
@@ -194,18 +210,18 @@ export default function LaunchList() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a href="#contact" className="btn-gold">
+              <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 lg:mt-8">
+                <a href="#contact" className="btn-gold w-full sm:w-auto">
                   {l.cta} <ArrowRight size={16} aria-hidden="true" />
                 </a>
                 {l.link ? (
-                  <a href={l.link.href} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                  <a href={l.link.href} target="_blank" rel="noopener noreferrer" className="btn-ghost w-full sm:w-auto">
                     {l.link.label} <ArrowUpRight size={15} aria-hidden="true" />
                   </a>
                 ) : null}
               </div>
             </div>
-            <div className={`flex ${flip ? 'lg:order-1' : ''}`} data-reveal="zoom" style={{ '--delay': '120ms' }}>
+            <div className={`order-1 flex ${flip ? 'lg:order-1' : 'lg:order-2'}`} data-reveal="zoom" style={{ '--delay': '120ms' }}>
               {visualFor(l)}
             </div>
           </article>
