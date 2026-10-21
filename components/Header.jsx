@@ -42,7 +42,7 @@ export default function Header() {
   return (
     <header
       className={`sticky top-0 z-50 transition-colors duration-500 ${
-        light ? 'border-b border-line/80 bg-ivory/85 shadow-card backdrop-blur-xl' : 'border-b border-white/5 bg-navy/90 backdrop-blur-xl'
+        light ? 'border-b border-line/80 bg-ivory/85 shadow-card backdrop-blur-xl' : open ? 'border-b border-white/5 bg-navy' : 'border-b border-white/5 bg-navy/90 backdrop-blur-xl'
       }`}
     >
       <div className="scroll-progress absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-gold-dark via-gold-light to-gold" aria-hidden="true" />
@@ -95,7 +95,7 @@ export default function Header() {
 
       <div
         id="mobile-menu"
-        className={`fixed inset-x-0 bottom-0 top-[var(--header-h)] origin-top bg-navy px-4 pb-10 pt-6 transition duration-500 ease-premium lg:hidden ${
+        className={`fixed inset-x-0 top-[var(--header-h)] h-[calc(100dvh-var(--header-h))] origin-top overflow-y-auto bg-navy px-4 pb-10 pt-6 transition duration-500 ease-premium lg:hidden ${
           open ? 'visible opacity-100' : 'invisible -translate-y-3 opacity-0'
         }`}
       >

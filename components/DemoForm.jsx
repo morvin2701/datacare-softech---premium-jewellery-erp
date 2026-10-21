@@ -5,7 +5,7 @@ import { CheckCircle2, Loader2, Send } from 'lucide-react';
 import { submitDemoRequest } from '@/lib/formService';
 
 const types = ['Retail showroom', 'Wholesale', 'Manufacturing', 'Multi-branch chain', 'Imitation / Silver', 'Other'];
-const empty = { name: '', phone: '', city: '', business: types[0], message: '' };
+const empty = { name: '', phone: '', email: '', city: '', business: types[0], message: '' };
 
 export default function DemoForm() {
   const [form, setForm] = useState(empty);
@@ -62,6 +62,10 @@ export default function DemoForm() {
         <div>
           <label htmlFor="phone" className="mb-1.5 block text-sm font-semibold text-ink">Mobile *</label>
           <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" required value={form.phone} onChange={set} className={input} placeholder="10-digit mobile number" />
+        </div>
+        <div>
+          <label htmlFor="email" className="mb-1.5 block text-sm font-semibold text-ink">Email <span className="font-normal text-ink-faint">(optional)</span></label>
+          <input id="email" name="email" type="email" inputMode="email" autoComplete="email" value={form.email} onChange={set} className={input} placeholder="you@example.com" />
         </div>
         <div>
           <label htmlFor="city" className="mb-1.5 block text-sm font-semibold text-ink">City</label>
