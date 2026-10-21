@@ -10,7 +10,8 @@ const maxCount = Math.max(...states.map((s) => s.count));
 const fmt = (n) => n.toLocaleString('en-IN');
 
 // Fill strength grows with the log of the count so Gujarat doesn't flatten everyone else.
-const tint = (count) => 0.12 + 0.55 * (Math.log(count + 1) / Math.log(maxCount + 1));
+// Rounded to 3 decimals so server and browser produce the identical string (avoids a hydration warning).
+const tint = (count) => Math.round((0.12 + 0.55 * (Math.log(count + 1) / Math.log(maxCount + 1))) * 1000) / 1000;
 
 // Rough on-screen size of each state (India-map units) → how far to zoom in.
 function zoomFor(d) {
@@ -103,7 +104,7 @@ export default function IndiaMap() {
                     onMouseLeave={() => setHover(null)}
                     onClick={() => s && setSelected(name)}
                     className={`map-state transition-all duration-300 ${s ? 'cursor-pointer' : ''}`}
-                    fill={s ? `rgba(201,162,75,${active ? Math.min(0.9, tint(s.count) + 0.25) : tint(s.count)})` : 'rgba(255,255,255,0.05)'}
+                    fill={s ? `rgba(201,162,75,${active ? Math.min(0.9, Math.round((tint(s.count) + 0.25) * 1000) / 1000) : tint(s.count)})` : 'rgba(255,255,255,0.05)'}
                     stroke={active ? '#F1D58E' : 'rgba(201,162,75,0.45)'}
                     strokeWidth={active ? 2.2 : 1}
                     strokeLinejoin="round"

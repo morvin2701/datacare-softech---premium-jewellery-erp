@@ -29,7 +29,7 @@ export default function Hero() {
         </svg>
       ))}
 
-      <div className="container-x relative grid items-center gap-8 pb-10 pt-8 md:pb-28 md:pt-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
+      <div className="container-x relative grid items-center gap-8 pb-10 pt-8 md:pb-16 md:pt-16 lg:pb-14 lg:pt-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
         <div className="text-center lg:text-left">
           <p className="inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-white/5 px-4 py-1.5 text-xs font-medium text-gold-light backdrop-blur hero-in" style={{ '--d': '0ms' }}>
             <span className="relative flex h-2 w-2">
