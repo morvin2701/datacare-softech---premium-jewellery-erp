@@ -16,17 +16,18 @@ export default function TrustStrip() {
         {items.map((it, i) => {
           const Inner = (
             <>
-              <p className="flex items-center justify-center gap-2 font-display text-4xl font-medium text-gold-light sm:text-5xl">
-                {it.star ? <Star size={26} className="fill-gold text-gold" aria-hidden="true" /> : null}
+              <p className="flex items-center justify-center gap-1.5 font-display text-[1.9rem] font-medium text-gold-light sm:gap-2 sm:text-5xl">
+                {it.star ? <Star size={20} className="fill-gold text-gold sm:hidden" aria-hidden="true" /> : null}
+                {it.star ? <Star size={26} className="hidden fill-gold text-gold sm:block" aria-hidden="true" /> : null}
                 <Counter value={it.value} decimals={it.decimals} suffix={it.suffix} />
               </p>
-              <p className="mt-2 text-xs uppercase tracking-[0.16em] text-white/55 sm:text-[0.78rem]">{it.label}</p>
+              <p className="mt-1.5 text-[0.62rem] uppercase tracking-[0.12em] text-white/55 sm:mt-2 sm:text-[0.78rem] sm:tracking-[0.16em]">{it.label}</p>
             </>
           );
           return (
             <div
               key={it.label}
-              className={`px-3 py-9 text-center sm:py-11 ${i % 2 ? 'border-l border-white/10' : ''} ${i > 1 ? 'border-t border-white/10 lg:border-t-0' : ''} ${i === 2 ? 'lg:border-l' : ''}`}
+              className={`px-2 py-5 text-center sm:px-3 sm:py-11 ${i % 2 ? 'border-l border-white/10' : ''} ${i > 1 ? 'border-t border-white/10 lg:border-t-0' : ''} ${i === 2 ? 'lg:border-l' : ''}`}
               data-reveal
               style={{ '--delay': `${i * 90}ms` }}
             >
